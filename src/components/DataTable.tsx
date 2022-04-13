@@ -2,9 +2,10 @@ import { Typography, Box, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { getStocks } from "../services";
 import WeatherGrid from "./WeatherGrid";
+import { ICity } from "../interfaces/interfaces";
 
 const DataTable = () => {
-  const [cities, setCities] = useState<string[]>([]);
+  const [cities, setCities] = useState<ICity["cities"]>([]);
   const [formInput, setformInput] = useState<string>("");
   const [forecast, setForecast] = useState<Array<any>>([]);
 
@@ -15,15 +16,19 @@ const DataTable = () => {
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     getStocks(formInput).then((response) => {
-      setCities([...cities, response.location.name]);
-      setForecast([...forecast, response.forecast.forecastday]);
-      console.log(response.location.name, response.forecast.forecastday);
+      setCities([
+        ...cities,
+        {
+          name: response.location.name,
+          forecast: response.forecast.forecastday,
+        },
+      ]);
+      // setForecast([...forecast, response.forecast.forecastday]);
 
       setformInput("");
     });
   };
-
-  console.log(forecast);
+  console.log(cities, "<<<");
 
   return (
     <div>
@@ -32,26 +37,21 @@ const DataTable = () => {
       </Typography>
       <Box>
         <form onSubmit={handleOnSubmit}>
-          <label htmlFor="city_input"></label>
-          <input
-            id="city_input"
-            type="text"
-            value={formInput}
-            onChange={handleOnChange}
-          />
-          <Button type="submit">Select City</Button>
+          <Typography align="center">
+            <label htmlFor="city_input"></label>
+            <input
+              id="city_input"
+              type="text"
+              value={formInput}
+              onChange={handleOnChange}
+            />
+
+            <Button type="submit">Select City</Button>
+          </Typography>
         </form>
       </Box>
       {cities.map((city) => {
-        return (
-          <WeatherGrid
-            key={city}
-            setCities={setCities}
-            cities={cities}
-            forecast={forecast}
-            city={city}
-          ></WeatherGrid>
-        );
+        return <WeatherGrid key={city.name} city={city}></WeatherGrid>;
       })}
     </div>
   );

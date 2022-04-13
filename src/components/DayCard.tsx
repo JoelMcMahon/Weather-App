@@ -2,7 +2,7 @@ import { Card, Grid, Typography } from "@mui/material";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import React from "react";
 
-interface IDayForecast {
+export interface IDayForecast {
   singleDayForecast: {
     date: string;
     date_epoch: number;

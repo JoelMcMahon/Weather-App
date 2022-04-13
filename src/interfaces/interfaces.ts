@@ -1,4 +1,9 @@
+export type city = {
+  name: string;
+  forecast: any[];
+};
+
 export interface ICity {
-  cities: string[];
-  setCities: React.Dispatch<React.SetStateAction<string[]>>;
+  cities: city[];
+  setCities: React.Dispatch<React.SetStateAction<city[]>>;
 }

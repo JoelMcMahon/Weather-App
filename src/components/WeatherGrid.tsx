@@ -4,37 +4,30 @@ import React, { useState } from "react";
 import { getStocks } from "../services";
 import DayCard from "./DayCard";
 import { ICity } from "../interfaces/interfaces";
+import { IDayForecast } from "./DayCard";
 
 interface IProps {
-  cities: ICity["cities"];
-  setCities: ICity["setCities"];
-  forecast: any[];
   city: any;
 }
-const WeatherGrid: React.FC<IProps> = ({
-  cities,
-  setCities,
-  forecast,
-  city,
-}) => {
+const WeatherGrid: React.FC<IProps> = ({ city }) => {
   return (
-    <Box>
+    <Box sx={{ m: 4 }}>
       <Grid container spacing={2}>
         <Grid item xs={3}>
           <Paper>
             <Typography align="center">{city.name}</Typography>
           </Paper>
         </Grid>
-        {forecast.map((daysForecast) => {
-          return daysForecast.map((singleDayForecast: any) => {
+        {city.forecast.map(
+          (singleDayForecast: IDayForecast["singleDayForecast"]) => {
             return (
               <DayCard
-                singleDayForecast={singleDayForecast}
                 key={singleDayForecast.date}
-              ></DayCard>
+                singleDayForecast={singleDayForecast}
+              />
             );
-          });
-        })}
+          }
+        )}
       </Grid>
     </Box>
   );
