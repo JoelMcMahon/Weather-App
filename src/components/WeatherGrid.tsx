@@ -3,44 +3,26 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { getStocks } from "../services";
 import DayCard from "./DayCard";
+import { ICity } from "../interfaces/interfaces";
 
-const WeatherGrid: React.FC = () => {
-  const [formInput, setformInput] = useState<string>("");
-  const [city, setCity] = useState<string>("");
-  const [forecast, setForecast] = useState<Array<any>>([]);
-
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setformInput(e.target.value);
-  };
-
-  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    getStocks(formInput).then((response) => {
-      console.log(response);
-      setCity(response.location.name);
-      setForecast(response.forecast.forecastday);
-    });
-  };
-
-  console.log(forecast);
-
+interface IProps {
+  cities: ICity["cities"];
+  setCities: ICity["setCities"];
+  forecast: any[];
+  city: any;
+}
+const WeatherGrid: React.FC<IProps> = ({
+  cities,
+  setCities,
+  forecast,
+  city,
+}) => {
   return (
     <Box>
-      <form onSubmit={handleOnSubmit}>
-        <label htmlFor="city_input"></label>
-        <input
-          id="city_input"
-          type="text"
-          value={formInput}
-          onChange={handleOnChange}
-        />
-        <button>submit</button>
-        <Button>Select City</Button>
-      </form>
       <Grid container spacing={2}>
         <Grid item xs={3}>
           <Paper>
-            <Typography align="center">{city}</Typography>
+            <Typography align="center">{city.name}</Typography>
           </Paper>
         </Grid>
         {forecast.map((dayForecast) => {

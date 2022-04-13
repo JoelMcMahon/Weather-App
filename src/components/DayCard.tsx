@@ -6,23 +6,24 @@ interface IDayForecast {
   dayForecast: {
     date: string;
     date_epoch: number;
-    day: object;
+    day: any;
     astro: object;
     hour: object;
   };
 }
 
 const DayCard: React.FC<IDayForecast> = ({ dayForecast }) => {
-  console.log(dayForecast);
   let dateString = dayForecast.date;
   let weekday = new Date(dateString).toLocaleString("en-GB", {
     weekday: "long",
   });
-  console.log(weekday);
+
   return (
     <Grid item xs={3}>
       <Card>
         <Typography align="center">{weekday}</Typography>
+        <img className="center" src={dayForecast.day.condition.icon} alt="" />
+        <Typography align="center">{dayForecast.day.avgtemp_c} ℃</Typography>
       </Card>
     </Grid>
   );
