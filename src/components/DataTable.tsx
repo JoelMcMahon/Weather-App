@@ -15,14 +15,15 @@ const DataTable = () => {
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     getStocks(formInput).then((response) => {
-      console.log(response);
       setCities([...cities, response.location.name]);
-      setForecast(response.forecast.forecastday);
+      setForecast([...forecast, response.forecast.forecastday]);
+      console.log(response.location.name, response.forecast.forecastday);
+
       setformInput("");
     });
   };
 
-  console.log(forecast, "FORECAST");
+  console.log(forecast);
 
   return (
     <div>

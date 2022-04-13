@@ -3,7 +3,7 @@ import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import React from "react";
 
 interface IDayForecast {
-  dayForecast: {
+  singleDayForecast: {
     date: string;
     date_epoch: number;
     day: any;
@@ -12,8 +12,8 @@ interface IDayForecast {
   };
 }
 
-const DayCard: React.FC<IDayForecast> = ({ dayForecast }) => {
-  let dateString = dayForecast.date;
+const DayCard: React.FC<IDayForecast> = ({ singleDayForecast }) => {
+  let dateString = singleDayForecast.date;
   let weekday = new Date(dateString).toLocaleString("en-GB", {
     weekday: "long",
   });
@@ -22,8 +22,14 @@ const DayCard: React.FC<IDayForecast> = ({ dayForecast }) => {
     <Grid item xs={3}>
       <Card>
         <Typography align="center">{weekday}</Typography>
-        <img className="center" src={dayForecast.day.condition.icon} alt="" />
-        <Typography align="center">{dayForecast.day.avgtemp_c} ℃</Typography>
+        <img
+          className="center"
+          src={singleDayForecast.day.condition.icon}
+          alt=""
+        />
+        <Typography align="center">
+          {singleDayForecast.day.avgtemp_c} ℃
+        </Typography>
       </Card>
     </Grid>
   );

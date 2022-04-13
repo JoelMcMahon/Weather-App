@@ -25,10 +25,15 @@ const WeatherGrid: React.FC<IProps> = ({
             <Typography align="center">{city.name}</Typography>
           </Paper>
         </Grid>
-        {forecast.map((dayForecast) => {
-          return (
-            <DayCard dayForecast={dayForecast} key={dayForecast.date}></DayCard>
-          );
+        {forecast.map((daysForecast) => {
+          return daysForecast.map((singleDayForecast: any) => {
+            return (
+              <DayCard
+                singleDayForecast={singleDayForecast}
+                key={singleDayForecast.date}
+              ></DayCard>
+            );
+          });
         })}
       </Grid>
     </Box>
