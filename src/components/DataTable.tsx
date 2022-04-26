@@ -37,19 +37,24 @@ const DataTable = () => {
       {/* <Typography variant="h3" align="center">
         Weather Forecast
       </Typography> */}
-      <Box>
-        <form onSubmit={handleOnSubmit}>
-          <Typography align="center">
-            <label htmlFor="city_input"></label>
-            <input
-              id="city_input"
-              type="text"
-              value={formInput}
-              onChange={handleOnChange}
-            />
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Typography align="left">WeatherApp</Typography>
+        <form onSubmit={handleOnSubmit} className="cityInputForm">
+          <label htmlFor="city_input"></label>
+          <input
+            id="city_input"
+            type="text"
+            value={formInput}
+            onChange={handleOnChange}
+            placeholder="Search for a City"
+          />
 
-            <Button type="submit">Select City</Button>
-          </Typography>
+          <Button type="submit">Select City</Button>
         </form>
       </Box>
       {city.forecast[0] && <CityTabs></CityTabs>}

@@ -3,17 +3,21 @@ import "./App.css";
 import Appbar from "./components/AppBar";
 import DataTable from "./components/DataTable";
 import { Box } from "@mui/material";
-import CityContextProvider from "./context/CityContextProvider";
+import CityContextProvider, {
+  useCityContext,
+} from "./context/CityContextProvider";
 
-const App = () => {
+const App: React.FC = () => {
+  const { city } = useCityContext();
+
   return (
     <CityContextProvider>
-      <div className="App">
+      <Box className="App">
         {/* <Appbar></Appbar> */}
         <Box className="main_container">
           <DataTable></DataTable>
         </Box>
-      </div>
+      </Box>
     </CityContextProvider>
   );
 };

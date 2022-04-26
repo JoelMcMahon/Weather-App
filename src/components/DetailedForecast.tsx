@@ -21,7 +21,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
   console.log(cityDay, "<<<< City Condition");
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={8} sx={{ fontWeight: 100 }}>
       <Grid item xs={4}>
         <Card
           sx={{
@@ -29,14 +29,13 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
             backgroundColor: "#064663",
             color: "white",
             p: 2,
-            width: "20rem",
             height: "20rem",
           }}
         >
-          <Typography variant="h3" align="center" margin={1}>
+          <Typography variant="h3" align="center" margin={1} fontWeight={100}>
             {city.name}
           </Typography>
-          <Typography variant="h4" align="center">
+          <Typography variant="h4" align="center" fontWeight={100}>
             {cityForecast.day.avgtemp_c} ℃
           </Typography>
           <Box
@@ -48,7 +47,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
             }}
           >
             <img src={cityForecast.day.condition.icon} alt="" />
-            <Typography variant="h4">
+            <Typography variant="h4" fontWeight={100}>
               {cityForecast.day.condition.text}
             </Typography>
           </Box>
@@ -60,18 +59,17 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
             border: "none",
             backgroundColor: "#064663",
             color: "white",
-            p: 2,
-            width: "20rem",
+            padding: 2,
             height: "20rem",
             lineHeight: "2.5rem",
           }}
         >
           <ul>
-            <li>Minimum Temperature: {cityDay.mintemp_c} ℃</li>
-            <li>Maximum Temperature: {cityDay.maxtemp_c} ℃</li>
-            <li>Total rainfall: {cityDay.totalprecip_mm} mm</li>
-            <li>UV Levels: {cityDay.uv}</li>
-            <li>Maxium Wind Speed: {cityDay.maxwind_kph} km/h</li>
+            <li>Minimum Temperature: {cityDay.mintemp_c}℃</li>
+            <li>Maximum Temperature: {cityDay.maxtemp_c}℃</li>
+            <li>Total rainfall: {cityDay.totalprecip_mm}mm</li>
+            <li>UV Level: {cityDay.uv}</li>
+            <li>Maximum Wind Speed: {cityDay.maxwind_kph} km/h</li>
             <li>Average Humidity: {cityDay.avghumidity}%</li>
             <li>Average Visibility: {cityDay.avgvis_km} km</li>
           </ul>
@@ -84,7 +82,6 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
             backgroundColor: "#064663",
             color: "white",
             p: 2,
-            width: "20rem",
             height: "20rem",
             display: "flex",
             alignItems: "center",
