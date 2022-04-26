@@ -2,12 +2,17 @@ import { Typography, Box, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { getStocks } from "../services";
 import WeatherGrid from "./WeatherGrid";
-import { ICity } from "../interfaces/interfaces";
+import { city } from "../interfaces/interfaces";
+import CityTabs from "./CityTabs";
+import { useCityContext } from "../context/CityContextProvider";
 
 const DataTable = () => {
-  const [cities, setCities] = useState<ICity["cities"]>([]);
   const [formInput, setformInput] = useState<string>("");
   const [forecast, setForecast] = useState<Array<any>>([]);
+
+  const { city, setCity } = useCityContext();
+
+  console.log(city);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setformInput(e.target.value);
@@ -16,25 +21,22 @@ const DataTable = () => {
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     getStocks(formInput).then((response) => {
-      setCities([
-        ...cities,
-        {
-          name: response.location.name,
-          forecast: response.forecast.forecastday,
-        },
-      ]);
+      setCity({
+        name: response.location.name,
+        forecast: response.forecast.forecastday,
+      });
       // setForecast([...forecast, response.forecast.forecastday]);
 
       setformInput("");
     });
   };
-  console.log(cities, "<<<");
+  console.log(city, "<<<");
 
   return (
     <div>
-      <Typography variant="h3" align="center">
+      {/* <Typography variant="h3" align="center">
         Weather Forecast
-      </Typography>
+      </Typography> */}
       <Box>
         <form onSubmit={handleOnSubmit}>
           <Typography align="center">
@@ -50,9 +52,8 @@ const DataTable = () => {
           </Typography>
         </form>
       </Box>
-      {cities.map((city) => {
-        return <WeatherGrid key={city.name} city={city}></WeatherGrid>;
-      })}
+      {city.forecast[0] && <CityTabs></CityTabs>}
+      {/* <WeatherGrid city={city}></WeatherGrid>; */}
     </div>
   );
 };
