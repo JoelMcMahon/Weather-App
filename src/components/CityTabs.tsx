@@ -6,6 +6,7 @@ import TabList from "@mui/lab/TabList";
 import { TabPanel } from "@mui/lab";
 import { city } from "../interfaces/interfaces";
 import { useCityContext } from "../context/CityContextProvider";
+import DetailedForecast from "./DetailedForecast";
 
 const CityTabs: React.FC = () => {
   const { city, setCity } = useCityContext();
@@ -31,14 +32,19 @@ const CityTabs: React.FC = () => {
             aria-label="lab API tabs example"
             centered
           >
-            <Tab label={weekdays[0]} value="1" />
-            <Tab label={weekdays[1]} value="2" />
-            <Tab label={weekdays[2]} value="3" />
+            {weekdays.map((weekday, i) => {
+              return <Tab label={weekday} value={i.toString()} />;
+            })}
           </TabList>
         </Box>
-        <TabPanel value="1">{weekdays[0]}</TabPanel>
-        <TabPanel value="2">{weekdays[1]}</TabPanel>
-        <TabPanel value="3">{weekdays[2]}</TabPanel>
+
+        {weekdays.map((weekday, i) => {
+          return (
+            <TabPanel value={i.toString()}>
+              <DetailedForecast value={value} />
+            </TabPanel>
+          );
+        })}
       </TabContext>
     </Box>
   );
