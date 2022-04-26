@@ -33,7 +33,13 @@ const CityTabs: React.FC = () => {
             centered
           >
             {weekdays.map((weekday, i) => {
-              return <Tab label={weekday} value={i.toString()} />;
+              return (
+                <Tab
+                  label={weekday}
+                  value={i.toString()}
+                  sx={{ color: "white" }}
+                />
+              );
             })}
           </TabList>
         </Box>
