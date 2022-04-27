@@ -12,8 +12,6 @@ const DataTable = () => {
 
   const { city, setCity } = useCityContext();
 
-  console.log(city);
-
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setformInput(e.target.value);
   };
@@ -30,7 +28,6 @@ const DataTable = () => {
       setformInput("");
     });
   };
-  console.log(city, "<<<");
 
   return (
     <div>
@@ -40,10 +37,14 @@ const DataTable = () => {
       <Box
         sx={{
           display: "flex",
+          flexDirection: "row",
           alignItems: "center",
+          justifyContent: "space-around",
         }}
       >
-        <Typography align="left">WeatherApp</Typography>
+        <Typography variant="h4" color={"white"}>
+          WeatherApp
+        </Typography>
         <form onSubmit={handleOnSubmit} className="cityInputForm">
           <label htmlFor="city_input"></label>
           <input
@@ -57,7 +58,12 @@ const DataTable = () => {
           <Button type="submit">Select City</Button>
         </form>
       </Box>
-      {city.forecast[0] && <CityTabs></CityTabs>}
+      {city.forecast[0] && (
+        <>
+          <CityTabs></CityTabs>
+        </>
+      )}
+
       {/* <WeatherGrid city={city}></WeatherGrid>; */}
     </div>
   );

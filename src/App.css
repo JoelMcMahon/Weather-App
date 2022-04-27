@@ -25,8 +25,8 @@
 
 .main_container {
   padding: 1rem;
-  height: 80vh;
-  width: 80%;
+  height: 90vh;
+  width: 82%;
   background: rgb(4, 51, 73);
   background: linear-gradient(
     0deg,
@@ -37,7 +37,7 @@
 }
 
 .cityInputForm {
-  margin: auto;
+  /* margin-left: 5rem; */
 }
 
 #city_input {

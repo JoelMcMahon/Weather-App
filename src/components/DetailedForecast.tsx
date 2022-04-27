@@ -12,13 +12,9 @@ interface IProps {
 
 const DetailedForecast: React.FC<IProps> = ({ value }) => {
   const { city } = useCityContext();
-  console.log(city);
-  console.log(value);
 
   let cityForecast = city.forecast[parseInt(value)];
   let cityDay = cityForecast.day;
-
-  console.log(cityDay, "<<<< City Condition");
 
   return (
     <Grid container spacing={8} sx={{ fontWeight: 100 }}>

@@ -7,10 +7,11 @@ import { TabPanel } from "@mui/lab";
 import { city } from "../interfaces/interfaces";
 import { useCityContext } from "../context/CityContextProvider";
 import DetailedForecast from "./DetailedForecast";
+import HourlyForecast from "./HourlyForecast";
 
 const CityTabs: React.FC = () => {
   const { city, setCity } = useCityContext();
-  const [value, setValue] = useState<string>("1");
+  const [value, setValue] = useState<string>("0");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -48,6 +49,7 @@ const CityTabs: React.FC = () => {
           return (
             <TabPanel value={i.toString()}>
               <DetailedForecast value={value} />
+              <HourlyForecast value={value}></HourlyForecast>
             </TabPanel>
           );
         })}
