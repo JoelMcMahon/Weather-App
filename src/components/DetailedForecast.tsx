@@ -18,7 +18,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
 
   return (
     <Grid container spacing={8} sx={{ fontWeight: 100 }}>
-      <Grid item xs={4}>
+      <Grid item xs={12} lg={4}>
         <Card
           sx={{
             border: "none",
@@ -49,7 +49,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
           </Box>
         </Card>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={12} lg={4}>
         <Card
           sx={{
             border: "none",
@@ -71,7 +71,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
           </ul>
         </Card>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={12} lg={4}>
         <Card
           sx={{
             border: "none",

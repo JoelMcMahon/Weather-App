@@ -55,9 +55,19 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
 
   return (
     <Container>
-      <Grid container spacing={1}>
+      <Grid container spacing={1} fontSize={15}>
         <Grid item xs={2}>
-          <Box color={"white"} fontSize={"6rem"}>
+          <Box
+            color={"white"}
+            fontSize={"6rem"}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+              height: "100%",
+            }}
+          >
             <IoIosArrowDropleft onClick={handleBackward}></IoIosArrowDropleft>
           </Box>
         </Grid>
@@ -65,7 +75,21 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
         {slides.map((slide, i) => {
           return (
             <Grid item xs={2}>
-              <Paper>
+              <Paper
+                sx={{
+                  border: "none",
+                  backgroundColor: "#064663",
+                  color: "white",
+                  padding: 2,
+                  marginTop: 5,
+                  lineHeight: "2.5rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                  height: "20rem",
+                }}
+              >
                 <ul>
                   <li>{cityForecast.hour[slides[i]].time.slice(-5)}</li>
                   <li>{cityForecast.hour[slides[i]].temp_c}℃</li>
@@ -82,7 +106,17 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
         })}
 
         <Grid item xs={2}>
-          <Box color={"white"} fontSize={"6rem"}>
+          <Box
+            color={"white"}
+            fontSize={"6rem"}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+              height: "100%",
+            }}
+          >
             <IoIosArrowDropright onClick={handleForward}></IoIosArrowDropright>
           </Box>
         </Grid>

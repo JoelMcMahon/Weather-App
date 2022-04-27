@@ -20,24 +20,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: black;
 }
 
-.main_container {
-  padding: 1rem;
-  height: 90vh;
-  width: 82%;
-  background: rgb(4, 51, 73);
+body {
+  /* background-color: rgb(4, 51, 73); */
   background: linear-gradient(
     0deg,
     rgba(4, 51, 73, 1) 0%,
     rgba(5, 65, 92, 1) 100%
   );
-  border-radius: 3px;
 }
 
-.cityInputForm {
-  /* margin-left: 5rem; */
+.main_container {
+  padding: 1rem;
+  height: 90vh;
+  /* width: 82%; */
+  display: flex;
+
+  border-radius: 3px;
+}
+@media screen and (max-width: 600px) {
+  .cityInputForm {
+    /* margin: auto; */
+
+    align-self: center;
+  }
 }
 
 #city_input {

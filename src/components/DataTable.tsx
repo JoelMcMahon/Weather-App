@@ -37,7 +37,7 @@ const DataTable = () => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: { xs: "column", lg: "row" },
           alignItems: "center",
           justifyContent: "space-around",
         }}
