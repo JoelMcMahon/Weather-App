@@ -17,11 +17,11 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
   console.log(time, "<<<< TIME");
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      let currentDate = new Date();
-      let time = currentDate.getHours();
-      console.log(time, "<<<< TIME");
-    }, 600000);
+    // const interval = setInterval(() => {
+    //   let currentDate = new Date();
+    //   let time = currentDate.getHours();
+    //   console.log(time, "<<<< TIME");
+    // }, 600000);
 
     let slideArray: number[] = [];
 
@@ -31,7 +31,7 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
     }
     setSlides(slideArray);
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, []);
 
   const [slides, setSlides] = useState<number[]>([0, 1, 2, 3]);
@@ -49,7 +49,7 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
     setSlides(nextSlide(slides, 1));
   };
 
-  const handleBackward = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleBackward = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
     setSlides(nextSlide(slides, -1));
   };
 
@@ -57,8 +57,8 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
     <Container>
       <Grid container spacing={1}>
         <Grid item xs={2}>
-          <Box onClick={handleBackward}>
-            <IoIosArrowDropleft></IoIosArrowDropleft>
+          <Box color={"white"} fontSize={"6rem"}>
+            <IoIosArrowDropleft onClick={handleBackward}></IoIosArrowDropleft>
           </Box>
         </Grid>
 
@@ -83,9 +83,7 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
 
         <Grid item xs={2}>
           <Box color={"white"} fontSize={"6rem"}>
-            <IoIosArrowDropright onClick={handleForward}>
-              <span></span>
-            </IoIosArrowDropright>
+            <IoIosArrowDropright onClick={handleForward}></IoIosArrowDropright>
           </Box>
         </Grid>
       </Grid>

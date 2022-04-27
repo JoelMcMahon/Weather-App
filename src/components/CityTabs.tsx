@@ -49,6 +49,7 @@ const CityTabs: React.FC = () => {
           return (
             <TabPanel value={i.toString()}>
               <DetailedForecast value={value} />
+              <br></br>
               <HourlyForecast value={value}></HourlyForecast>
             </TabPanel>
           );
