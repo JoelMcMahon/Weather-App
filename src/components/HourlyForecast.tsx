@@ -1,5 +1,5 @@
 import { Container, Grid, Paper, Box } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCityContext } from "../context/CityContextProvider";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 
@@ -12,6 +12,28 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
 
   let cityForecast = city.forecast[parseInt(value)];
 
+  let currentDate = new Date();
+  let time = currentDate.getHours();
+  console.log(time, "<<<< TIME");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      let currentDate = new Date();
+      let time = currentDate.getHours();
+      console.log(time, "<<<< TIME");
+    }, 600000);
+
+    let slideArray: number[] = [];
+
+    for (let i = 0; i < 4; i++) {
+      slideArray.push(time);
+      time++;
+    }
+    setSlides(slideArray);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const [slides, setSlides] = useState<number[]>([0, 1, 2, 3]);
 
   const nextSlide = (slides: number[], direction: number): number[] => {
@@ -22,10 +44,6 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
       );
     });
   };
-
-  console.log(cityForecast.hour);
-
-  console.log(slides);
 
   const handleForward = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
     setSlides(nextSlide(slides, 1));
