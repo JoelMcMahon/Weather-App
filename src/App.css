@@ -39,11 +39,20 @@ body {
 
   border-radius: 3px;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
   .cityInputForm {
     /* margin: auto; */
 
     align-self: center;
+  }
+  .icon-container {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .icon-container {
+    font-size: 6rem;
   }
 }
 

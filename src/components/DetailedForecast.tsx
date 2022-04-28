@@ -20,6 +20,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
     <Grid container spacing={8} sx={{ fontWeight: 100 }}>
       <Grid item xs={12} lg={4}>
         <Card
+          elevation={10}
           sx={{
             border: "none",
             backgroundColor: "#064663",
@@ -51,6 +52,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
       </Grid>
       <Grid item xs={12} lg={4}>
         <Card
+          elevation={10}
           sx={{
             border: "none",
             backgroundColor: "#064663",
@@ -73,6 +75,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
       </Grid>
       <Grid item xs={12} lg={4}>
         <Card
+          elevation={10}
           sx={{
             border: "none",
             backgroundColor: "#064663",

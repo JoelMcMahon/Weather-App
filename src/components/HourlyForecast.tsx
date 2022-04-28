@@ -2,10 +2,23 @@ import { Container, Grid, Paper, Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useCityContext } from "../context/CityContextProvider";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 interface IProps {
   value: string;
 }
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 560,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+});
 
 const HourlyForecast: React.FC<IProps> = ({ value }) => {
   const { city } = useCityContext();
@@ -54,74 +67,113 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
   };
 
   return (
-    <Container>
-      <Grid container spacing={1} fontSize={15}>
-        <Grid item xs={2}>
-          <Box
-            color={"white"}
-            fontSize={"6rem"}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-              height: "100%",
-            }}
-          >
-            <IoIosArrowDropleft onClick={handleBackward}></IoIosArrowDropleft>
-          </Box>
-        </Grid>
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Grid container spacing={1} fontSize={15}>
+          <Grid item xs={2}>
+            <Box
+              className="icon-container"
+              color={"white"}
+              // fontSize={"6rem"}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+                height: "100%",
+              }}
+            >
+              <IoIosArrowDropleft onClick={handleBackward}></IoIosArrowDropleft>
+            </Box>
+          </Grid>
 
-        {slides.map((slide, i) => {
-          return (
-            <Grid item xs={2}>
-              <Paper
-                sx={{
-                  border: "none",
-                  backgroundColor: "#064663",
-                  color: "white",
-                  padding: 2,
-                  marginTop: 5,
-                  lineHeight: "2.5rem",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textAlign: "center",
-                  height: "20rem",
-                }}
-              >
-                <ul>
-                  <li>{cityForecast.hour[slides[i]].time.slice(-5)}</li>
-                  <li>{cityForecast.hour[slides[i]].temp_c}℃</li>
-                  <li>
-                    <img
-                      src={cityForecast.hour[slides[i]].condition.icon}
-                    ></img>
-                  </li>
-                  <li>{cityForecast.hour[slides[i]].condition.text}</li>
-                </ul>
-              </Paper>
-            </Grid>
-          );
-        })}
+          {slides.map((slide, i) => {
+            return (
+              <Grid item xs={2} sx={{ display: { xs: "none", md: "block" } }}>
+                <Paper
+                  elevation={10}
+                  sx={{
+                    border: "none",
+                    backgroundColor: "#064663",
+                    color: "white",
+                    padding: 2,
+                    marginTop: 5,
+                    lineHeight: "2.5rem",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    height: "20rem",
+                  }}
+                >
+                  <ul>
+                    <li>{cityForecast.hour[slides[i]].time.slice(-5)}</li>
+                    <li>{cityForecast.hour[slides[i]].temp_c}℃</li>
+                    <li>
+                      <img
+                        src={cityForecast.hour[slides[i]].condition.icon}
+                      ></img>
+                    </li>
+                    <li>{cityForecast.hour[slides[i]].condition.text}</li>
+                  </ul>
+                </Paper>
+              </Grid>
+            );
+          })}
+          <Grid item xs={8} sx={{ display: { xs: "block", md: "none" } }}>
+            <Paper
+              elevation={10}
+              sx={{
+                border: "none",
+                backgroundColor: "#064663",
+                color: "white",
+                padding: 2,
+                marginTop: 5,
+                lineHeight: "2.5rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                height: "20rem",
+              }}
+            >
+              <ul>
+                <li>{cityForecast.hour[slides[0]].time.slice(-5)}</li>
+                <li>{cityForecast.hour[slides[0]].temp_c}℃</li>
+                <li>
+                  <img src={cityForecast.hour[slides[0]].condition.icon}></img>
+                </li>
+                <li>{cityForecast.hour[slides[0]].condition.text}</li>
+              </ul>
+            </Paper>
+          </Grid>
 
-        <Grid item xs={2}>
-          <Box
-            color={"white"}
-            fontSize={"6rem"}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-              height: "100%",
-            }}
-          >
-            <IoIosArrowDropright onClick={handleForward}></IoIosArrowDropright>
-          </Box>
+          <Grid item xs={2}>
+            <Box
+              className="icon-container"
+              color={"white"}
+              // fontSize={"6rem"}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+                height: "100%",
+              }}
+            >
+              <IoIosArrowDropright
+                onClick={handleForward}
+              ></IoIosArrowDropright>
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Box>
+    </ThemeProvider>
   );
 };
 
