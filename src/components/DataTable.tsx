@@ -27,12 +27,6 @@ const DataTable = () => {
     setIsFocus(false);
   };
 
-  console.log(isFocus, isBlur);
-  console.log(!isInputValid && isFocus, "<<< condition");
-  console.log(formInput[1]);
-
-  console.log(city);
-
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     getStocks(formInput).then((response) => {
@@ -57,7 +51,6 @@ const DataTable = () => {
         })
         .catch((err) => {
           setIsInputValid(false);
-          // setIsBlur(true);
         });
     }, 500);
 
@@ -83,7 +76,7 @@ const DataTable = () => {
           flexDirection: { xs: "column", lg: "row" },
           alignItems: "center",
           justifyContent: "space-around",
-          marginBottom: "1rem",
+          marginBottom: ".5rem",
         }}
       >
         <ThemeProvider theme={theme}>
