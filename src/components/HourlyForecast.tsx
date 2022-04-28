@@ -29,11 +29,6 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
   let time = currentDate.getHours();
 
   useEffect(() => {
-    // const interval = setInterval(() => {
-    //   let currentDate = new Date();
-    //   let time = currentDate.getHours();
-    // }, 600000);
-
     let slideArray: number[] = [];
 
     for (let i = 0; i < 4; i++) {
@@ -41,8 +36,6 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
       time++;
     }
     setSlides(slideArray);
-
-    // return () => clearInterval(interval);
   }, []);
 
   const [slides, setSlides] = useState<number[]>([0, 1, 2, 3]);
@@ -77,7 +70,6 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
             <Box
               className="icon-container"
               color={"white"}
-              // fontSize={"6rem"}
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -160,7 +152,6 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
             <Box
               className="icon-container"
               color={"white"}
-              // fontSize={"6rem"}
               sx={{
                 display: "flex",
                 alignItems: "center",
