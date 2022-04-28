@@ -1,14 +1,11 @@
 import { Typography, Box, Button } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { getStocks } from "../services";
-import WeatherGrid from "./WeatherGrid";
-import { city } from "../interfaces/interfaces";
 import CityTabs from "./CityTabs";
 import { useCityContext } from "../context/CityContextProvider";
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
-  const [forecast, setForecast] = useState<Array<any>>([]);
 
   const { city, setCity } = useCityContext();
 
@@ -23,7 +20,6 @@ const DataTable = () => {
         name: response.location.name,
         forecast: response.forecast.forecastday,
       });
-      // setForecast([...forecast, response.forecast.forecastday]);
 
       setformInput("");
     });
@@ -31,9 +27,6 @@ const DataTable = () => {
 
   return (
     <div>
-      {/* <Typography variant="h3" align="center">
-        Weather Forecast
-      </Typography> */}
       <Box
         sx={{
           display: "flex",

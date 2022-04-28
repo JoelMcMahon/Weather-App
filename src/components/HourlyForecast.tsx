@@ -14,13 +14,11 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
 
   let currentDate = new Date();
   let time = currentDate.getHours();
-  console.log(time, "<<<< TIME");
 
   useEffect(() => {
     // const interval = setInterval(() => {
     //   let currentDate = new Date();
     //   let time = currentDate.getHours();
-    //   console.log(time, "<<<< TIME");
     // }, 600000);
 
     let slideArray: number[] = [];
