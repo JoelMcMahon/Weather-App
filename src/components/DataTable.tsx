@@ -1,5 +1,5 @@
 import { Typography, Box, Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getStocks } from "../services";
 import CityTabs from "./CityTabs";
 import { useCityContext } from "../context/CityContextProvider";
@@ -7,12 +7,31 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
+  const [isInputValid, setIsInputValid] = useState<boolean>(false);
+  const [isFocus, setIsFocus] = useState<boolean>(false);
+  const [isBlur, setIsBlur] = useState<boolean>(false);
 
   const { city, setCity } = useCityContext();
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setformInput(e.target.value);
   };
+
+  const handleOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocus(true);
+    setIsBlur(false);
+  };
+
+  const handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsBlur(true);
+    setIsFocus(false);
+  };
+
+  console.log(isFocus, isBlur);
+  console.log(!isInputValid && isFocus, "<<< condition");
+  console.log(formInput[1]);
+
+  console.log(city);
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,11 +40,31 @@ const DataTable = () => {
         name: response.location.name,
         forecast: response.forecast.forecastday,
       });
-      // setForecast([...forecast, response.forecast.forecastday]);
 
       setformInput("");
+      setIsInputValid(false);
+      setIsBlur(false);
     });
   };
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      getStocks(formInput)
+        .then((res) => {
+          if (res.location.name) {
+            setIsInputValid(true);
+          }
+        })
+        .catch((err) => {
+          setIsInputValid(false);
+          // setIsBlur(true);
+        });
+    }, 500);
+
+    return () => {
+      clearTimeout(identifier);
+    };
+  }, [formInput, isFocus, isBlur]);
 
   const theme = createTheme();
 
@@ -38,15 +77,13 @@ const DataTable = () => {
 
   return (
     <div>
-      {/* <Typography variant="h3" align="center">
-        Weather Forecast
-      </Typography> */}
       <Box
         sx={{
           display: "flex",
           flexDirection: { xs: "column", lg: "row" },
           alignItems: "center",
           justifyContent: "space-around",
+          marginBottom: "1rem",
         }}
       >
         <ThemeProvider theme={theme}>
@@ -58,22 +95,34 @@ const DataTable = () => {
           <label htmlFor="city_input"></label>
           <input
             id="city_input"
+            className={
+              !isInputValid && isBlur
+                ? "invalid_input"
+                : isInputValid && isFocus
+                ? "valid_input"
+                : "unselected"
+            }
             type="text"
             value={formInput}
             onChange={handleOnChange}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
             placeholder="Search for a City"
           />
 
-          <Button type="submit">Select City</Button>
+          <Button type="submit" disabled={isInputValid ? false : true}>
+            Select City
+          </Button>
         </form>
+      </Box>
+      <Box className="error_message">
+        {!isInputValid && isBlur && <p>Please Enter a Valid City</p>}
       </Box>
       {city.forecast[0] && (
         <>
           <CityTabs></CityTabs>
         </>
       )}
-
-      {/* <WeatherGrid city={city}></WeatherGrid>; */}
     </div>
   );
 };
