@@ -1,4 +1,4 @@
-import { Container, Grid, Paper, Box } from "@mui/material";
+import { Grid, Paper, Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useCityContext } from "../context/CityContextProvider";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
@@ -27,13 +27,11 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
 
   let currentDate = new Date();
   let time = currentDate.getHours();
-  console.log(time, "<<<< TIME");
 
   useEffect(() => {
     // const interval = setInterval(() => {
     //   let currentDate = new Date();
     //   let time = currentDate.getHours();
-    //   console.log(time, "<<<< TIME");
     // }, 600000);
 
     let slideArray: number[] = [];
@@ -94,7 +92,12 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
 
           {slides.map((slide, i) => {
             return (
-              <Grid item xs={2} sx={{ display: { xs: "none", md: "block" } }}>
+              <Grid
+                key={cityForecast.hour[slides[i]].time.slice(-5)}
+                item
+                xs={2}
+                sx={{ display: { xs: "none", md: "block" } }}
+              >
                 <Paper
                   elevation={10}
                   sx={{

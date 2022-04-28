@@ -10,7 +10,7 @@ import DetailedForecast from "./DetailedForecast";
 import HourlyForecast from "./HourlyForecast";
 
 const CityTabs: React.FC = () => {
-  const { city, setCity } = useCityContext();
+  const { city } = useCityContext();
   const [value, setValue] = useState<string>("0");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -36,6 +36,7 @@ const CityTabs: React.FC = () => {
             {weekdays.map((weekday, i) => {
               return (
                 <Tab
+                  key={weekday}
                   label={weekday}
                   value={i.toString()}
                   sx={{ color: "white" }}
@@ -47,7 +48,7 @@ const CityTabs: React.FC = () => {
 
         {weekdays.map((weekday, i) => {
           return (
-            <TabPanel value={i.toString()}>
+            <TabPanel key={weekday} value={i.toString()}>
               <DetailedForecast value={value} />
               <br></br>
               <HourlyForecast value={value}></HourlyForecast>

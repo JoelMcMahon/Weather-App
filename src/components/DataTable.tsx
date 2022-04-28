@@ -1,15 +1,12 @@
 import { Typography, Box, Button } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { getStocks } from "../services";
-import WeatherGrid from "./WeatherGrid";
-import { city } from "../interfaces/interfaces";
 import CityTabs from "./CityTabs";
 import { useCityContext } from "../context/CityContextProvider";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
-  const [forecast, setForecast] = useState<Array<any>>([]);
 
   const { city, setCity } = useCityContext();
 
