@@ -17,7 +17,14 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
   let cityDay = cityForecast.day;
 
   return (
-    <Grid container spacing={8} sx={{ fontWeight: 100 }}>
+    <Grid
+      container
+      spacing={8}
+      sx={{
+        display: { sm: "block", md: "block", lg: "flex" },
+        fontWeight: "100",
+      }}
+    >
       <Grid item xs={12} lg={4}>
         <Card
           elevation={10}
