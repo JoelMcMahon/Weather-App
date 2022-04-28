@@ -23,12 +23,12 @@
 }
 
 body {
-  /* background-color: rgb(4, 51, 73); */
-  background: linear-gradient(
+  background-color: rgb(4, 51, 73);
+  /* background: linear-gradient(
     0deg,
     rgba(4, 51, 73, 1) 0%,
     rgba(5, 65, 92, 1) 100%
-  );
+  ); */
 }
 
 .main_container {

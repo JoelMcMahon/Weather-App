@@ -42,7 +42,7 @@ const DataTable = () => {
           justifyContent: "space-around",
         }}
       >
-        <Typography variant="h4" color={"white"}>
+        <Typography variant="h4" color={"white"} marginRight={3}>
           WeatherApp
         </Typography>
         <form onSubmit={handleOnSubmit} className="cityInputForm">
