@@ -60,9 +60,34 @@ body {
   background-color: #041c329c;
   color: white;
   border-radius: 2px;
-  border: none;
+  outline: none;
   padding: 8px;
   width: 200px;
+}
+
+.unselected {
+  border-style: none;
+}
+
+.invalid_input {
+  border-style: none;
+  border: 1px solid rgb(255, 0, 0);
+}
+
+.valid_input {
+  border-style: none;
+  border: 1px solid greenyellow;
+}
+
+.error_message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  min-height: 1.5rem;
+  color: #1976d2;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .tabs {

@@ -13,6 +13,7 @@ export const getStocks = (cityName: string): Promise<any> => {
       params: { q: city, days: "3" },
     })
       .then((response) => {
+        console.log("response in request");
         resolve(response.data);
       })
       .catch((err) => {
