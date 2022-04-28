@@ -5,6 +5,7 @@ import WeatherGrid from "./WeatherGrid";
 import { city } from "../interfaces/interfaces";
 import CityTabs from "./CityTabs";
 import { useCityContext } from "../context/CityContextProvider";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
@@ -29,6 +30,15 @@ const DataTable = () => {
     });
   };
 
+  const theme = createTheme();
+
+  theme.typography.h4 = {
+    "@media (min-width:600px)": {
+      marginBottom: "1rem",
+      fontSize: "2rem",
+    },
+  };
+
   return (
     <div>
       {/* <Typography variant="h3" align="center">
@@ -42,9 +52,11 @@ const DataTable = () => {
           justifyContent: "space-around",
         }}
       >
-        <Typography variant="h4" color={"white"} marginRight={3}>
-          WeatherApp
-        </Typography>
+        <ThemeProvider theme={theme}>
+          <Typography variant="h4" color={"white"} marginRight={3}>
+            WeatherApp
+          </Typography>
+        </ThemeProvider>
         <form onSubmit={handleOnSubmit} className="cityInputForm">
           <label htmlFor="city_input"></label>
           <input
