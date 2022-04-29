@@ -63,7 +63,11 @@ const DataTable = () => {
 
   theme.typography.h4 = {
     "@media (min-width:600px)": {
-      marginBottom: "1rem",
+      marginBottom: "0.5rem",
+      fontSize: "2rem",
+    },
+    "@media (min-width:350px)": {
+      marginBottom: "0.5rem",
       fontSize: "2rem",
     },
   };
