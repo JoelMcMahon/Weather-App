@@ -1,0 +1,6 @@
+{
+  "app.title": "WeatherApp",
+  "app.languageSelector.language": "Language",
+  "app.placeholder": "Search for a City",
+  "app.selectCityButton": "Select City"
+}

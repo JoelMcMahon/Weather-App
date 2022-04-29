@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useLanguageContext } from "./context/LanguageContextProvider";
 
 export const getStocks = (cityName: string): Promise<any> => {
   const city = cityName;
