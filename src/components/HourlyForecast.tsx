@@ -1,8 +1,9 @@
-import { Grid, Paper, Box } from "@mui/material";
+import { Grid, Paper, Box, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useCityContext } from "../context/CityContextProvider";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Popup from "./Popup";
 
 interface IProps {
   value: string;
@@ -86,6 +87,7 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
                 height: "100%",
               }}
             >
+              {" "}
               <IoIosArrowDropleft onClick={handleBackward}></IoIosArrowDropleft>
             </Box>
           </Grid>
@@ -123,6 +125,9 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
                       ></img>
                     </li>
                     <li>{cityForecast.hour[slides[i]].condition.text}</li>
+                    <li>
+                      <Popup value={cityForecast.hour[slides[i]]} />
+                    </li>
                   </ul>
                 </Paper>
               </Grid>
@@ -152,6 +157,9 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
                   <img src={cityForecast.hour[slides[0]].condition.icon}></img>
                 </li>
                 <li>{cityForecast.hour[slides[0]].condition.text}</li>
+                <li>
+                  <Popup value={cityForecast.hour[slides[0]]} />
+                </li>
               </ul>
             </Paper>
           </Grid>

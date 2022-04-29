@@ -27,12 +27,6 @@ const DataTable = () => {
     setIsFocus(false);
   };
 
-  console.log(isFocus, isBlur);
-  console.log(!isInputValid && isFocus, "<<< condition");
-  console.log(formInput[1]);
-
-  console.log(city);
-
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     getStocks(formInput).then((response) => {
