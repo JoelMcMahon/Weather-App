@@ -1,0 +1,6 @@
+{
+  "app.title": "AppMeteo",
+  "app.languageSelector.language": "Langue",
+  "app.placeholder": "Rechercher une ville",
+  "app.selectCityButton": "Sélectionner la ville"
+}

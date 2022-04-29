@@ -4,6 +4,8 @@ import { getStocks } from "../services";
 import CityTabs from "./CityTabs";
 import { useCityContext } from "../context/CityContextProvider";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { FormattedMessage, useIntl } from "react-intl";
+import LanguageSelector from "./LanguageSelector";
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
@@ -72,6 +74,8 @@ const DataTable = () => {
     },
   };
 
+  const intl = useIntl();
+
   return (
     <div>
       <Box
@@ -85,11 +89,12 @@ const DataTable = () => {
       >
         <ThemeProvider theme={theme}>
           <Typography variant="h4" color={"white"} marginRight={3}>
-            WeatherApp
+            <FormattedMessage id="app.title" defaultMessage="WeatherApp" />
           </Typography>
         </ThemeProvider>
         <form onSubmit={handleOnSubmit} className="cityInputForm">
           <label htmlFor="city_input"></label>
+
           <input
             id="city_input"
             className={
@@ -104,13 +109,19 @@ const DataTable = () => {
             onChange={handleOnChange}
             onFocus={handleOnFocus}
             onBlur={handleOnBlur}
-            placeholder="Search for a City"
+            placeholder={intl.formatMessage({ id: "app.placeholder" })}
           />
 
           <Button type="submit" disabled={isInputValid ? false : true}>
-            Select City
+            <FormattedMessage
+              id="app.selectCityButton"
+              defaultMessage="Select City"
+            />
           </Button>
         </form>
+        <Box>
+          <LanguageSelector />
+        </Box>
       </Box>
       <Box className="error_message">
         {!isInputValid && isBlur && <p>Please Enter a Valid City</p>}
