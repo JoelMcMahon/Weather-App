@@ -121,12 +121,12 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
             </Grid>
             <Grid item xs={6}>
               <Box>
-                <WiMoonrise /> Moonrise: <br /> {cityForecast.astro.moonrise}{" "}
+                <WiMoonrise /> Moonrise: <br /> {cityForecast.astro.moonset}
               </Box>
             </Grid>
             <Grid item xs={6}>
               <Box>
-                <WiMoonset /> Moonset: <br /> {cityForecast.astro.moonset}
+                <WiMoonset /> Moonset: <br /> {cityForecast.astro.moonrise}
               </Box>
             </Grid>
           </Grid>
