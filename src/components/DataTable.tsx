@@ -72,6 +72,21 @@ const DataTable = () => {
     });
   }, [locale]);
 
+  useEffect(() => {
+    let preset;
+    if (locale === "fr") {
+      preset = "Paris";
+    } else {
+      preset = "London";
+    }
+    getForecast(preset, locale).then((response) => {
+      setCity({
+        name: response.location.name,
+        forecast: response.forecast.forecastday,
+      });
+    });
+  }, []);
+
   const theme = createTheme();
 
   theme.typography.h4 = {
