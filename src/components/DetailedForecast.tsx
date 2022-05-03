@@ -52,7 +52,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
             }}
           >
             <img src={cityForecast.day.condition.icon} alt="" />
-            <Typography variant="h4" fontWeight={100}>
+            <Typography variant="h5" fontWeight={100}>
               {cityForecast.day.condition.text}
             </Typography>
           </Box>
