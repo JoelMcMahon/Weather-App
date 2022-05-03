@@ -8,15 +8,19 @@ const LanguageSelector: React.FC = () => {
 
   return (
     <>
-      <label htmlFor="languageSelector">
+      <label htmlFor="languageSelector" id="language">
         <FormattedMessage
           id="app.languageSelector.language"
-          defaultMessage="Langauge"
+          defaultMessage="Language"
         />
       </label>
-      <select value={locale} onChange={handleChangeLanguage}>
-        <option value="en">En</option>
-        <option value="fr">Fr</option>
+      <select id="menu" value={locale} onChange={handleChangeLanguage}>
+        <option className="options" value="en">
+          En
+        </option>
+        <option className="options" value="fr">
+          Fr
+        </option>
       </select>
     </>
   );

@@ -36,13 +36,12 @@ body {
   height: 90vh;
   /* width: 82%; */
   display: flex;
-
   border-radius: 3px;
 }
 @media screen and (max-width: 900px) {
   .cityInputForm {
     /* margin: auto; */
-
+    margin-bottom: 0.5rem;
     align-self: center;
   }
   .icon-container {
@@ -62,7 +61,7 @@ body {
   border-radius: 2px;
   outline: none;
   padding: 8px;
-  width: 200px;
+  width: 150px;
 }
 
 .unselected {
@@ -104,4 +103,21 @@ img {
 
 ul {
   margin: 0;
+}
+
+#language {
+  color: white;
+  margin-right: 0.5rem;
+}
+
+#menu {
+  border-radius: 0.3rem;
+  background-color: #041c329c;
+  color: white;
+  width: 3rem;
+}
+
+#cityBtn {
+  background: rgba(255, 255, 255, 0.114);
+  margin: 0rem 1rem;
 }
