@@ -20,5 +20,6 @@
   "popup.cloud": "Couverture Nuageuse: ",
   "popup.windSpeed": "Vitesse du Vent: ",
   "popup.chanceOfRain": "Risque de Pluie: ",
-  "popup.chanceOfSnow": "Risque de Neige: "
+  "popup.chanceOfSnow": "Risque de Neige: ",
+  "popup.detailedView": "Vue Detailee"
 }

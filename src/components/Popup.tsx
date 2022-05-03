@@ -28,12 +28,14 @@ const Popup: React.FC<IProps> = ({ value }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // console.log(city, "<<<<<<<< Popup");
-  console.log(value, "<<< Value");
-
   return (
     <div>
-      <Button onClick={handleOpen}>Learn More</Button>
+      <Button onClick={handleOpen}>
+        <FormattedMessage
+          id="popup.detailedView"
+          defaultMessage={"Detailed View"}
+        />
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}

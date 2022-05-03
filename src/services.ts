@@ -1,7 +1,6 @@
 import axios from "axios";
-import { useLanguageContext } from "./context/LanguageContextProvider";
 
-export const getStocks = (cityName: string): Promise<any> => {
+export const getForecast = (cityName: string, locale: string): Promise<any> => {
   const city = cityName;
   return new Promise((resolve, reject) => {
     axios({
@@ -11,7 +10,7 @@ export const getStocks = (cityName: string): Promise<any> => {
         "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
         "X-RapidAPI-Key": "846b76f7dbmshaacaee29e276dafp1b8cbfjsn880cc4b8b5c1",
       },
-      params: { q: city, days: "3" },
+      params: { q: city, days: "3", lang: locale },
     })
       .then((response) => {
         console.log("response in request");

@@ -20,5 +20,6 @@
   "popup.cloud": "Cloud Cover: ",
   "popup.windSpeed": "Wind Speed: ",
   "popup.chanceOfRain": "Chance of Rain: ",
-  "popup.chanceOfSnow": "Chance of Snow: "
+  "popup.chanceOfSnow": "Chance of Snow: ",
+  "popup.detailedView": "Detailed View"
 }
