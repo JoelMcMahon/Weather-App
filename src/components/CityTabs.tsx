@@ -4,14 +4,15 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import { TabPanel } from "@mui/lab";
-import { city } from "../interfaces/interfaces";
 import { useCityContext } from "../context/CityContextProvider";
 import DetailedForecast from "./DetailedForecast";
 import HourlyForecast from "./HourlyForecast";
+import { useLanguageContext } from "../context/LanguageContextProvider";
 
 const CityTabs: React.FC = () => {
   const { city } = useCityContext();
   const [value, setValue] = useState<string>("0");
+  const { locale } = useLanguageContext();
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -19,7 +20,7 @@ const CityTabs: React.FC = () => {
 
   const weekdays = city.forecast.map((day) => {
     let dateString = day.date;
-    return new Date(dateString).toLocaleString("en-GB", {
+    return new Date(dateString).toLocaleString(locale, {
       weekday: "long",
     });
   });
