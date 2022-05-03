@@ -63,6 +63,15 @@ const DataTable = () => {
     };
   }, [formInput, isFocus, isBlur]);
 
+  useEffect(() => {
+    getForecast(city.name, locale).then((response) => {
+      setCity({
+        name: response.location.name,
+        forecast: response.forecast.forecastday,
+      });
+    });
+  }, [locale]);
+
   const theme = createTheme();
 
   theme.typography.h4 = {
