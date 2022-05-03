@@ -100,7 +100,7 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
                     color: "white",
                     padding: 2,
                     marginTop: 5,
-                    lineHeight: "2.5rem",
+                    lineHeight: "2rem",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
