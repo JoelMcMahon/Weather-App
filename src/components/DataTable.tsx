@@ -138,7 +138,11 @@ const DataTable = () => {
             placeholder={intl.formatMessage({ id: "app.placeholder" })}
           />
 
-          <Button type="submit" disabled={isInputValid ? false : true}>
+          <Button
+            id="cityBtn"
+            type="submit"
+            disabled={isInputValid ? false : true}
+          >
             <FormattedMessage
               id="app.selectCityButton"
               defaultMessage="Select City"
