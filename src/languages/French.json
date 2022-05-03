@@ -21,5 +21,6 @@
   "popup.windSpeed": "Vitesse du Vent: ",
   "popup.chanceOfRain": "Risque de Pluie: ",
   "popup.chanceOfSnow": "Risque de Neige: ",
-  "popup.detailedView": "Vue Detailee"
+  "popup.detailedView": "Vue Detailee",
+  "dataTable.errorMessage": "Veuillez Entrer un Emplacement Valide"
 }

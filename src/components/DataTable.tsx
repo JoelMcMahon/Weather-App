@@ -135,7 +135,14 @@ const DataTable = () => {
         </Box>
       </Box>
       <Box className="error_message">
-        {!isInputValid && isBlur && <p>Please Enter a Valid City</p>}
+        {!isInputValid && isBlur && (
+          <p>
+            <FormattedMessage
+              id="dataTable.errorMessage"
+              defaultMessage={"Please Enter a Valid Location"}
+            />
+          </p>
+        )}
       </Box>
       {city.forecast[0] && (
         <>
