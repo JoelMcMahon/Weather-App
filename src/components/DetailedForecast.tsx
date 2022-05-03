@@ -5,6 +5,7 @@ import { BsSunrise } from "react-icons/bs";
 import { BsSunset } from "react-icons/bs";
 import { WiMoonrise } from "react-icons/wi";
 import { WiMoonset } from "react-icons/wi";
+import { FormattedMessage } from "react-intl";
 
 interface IProps {
   value: string;
@@ -70,13 +71,55 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
           }}
         >
           <ul>
-            <li>Minimum Temperature: {cityDay.mintemp_c}℃</li>
-            <li>Maximum Temperature: {cityDay.maxtemp_c}℃</li>
-            <li>Total rainfall: {cityDay.totalprecip_mm}mm</li>
-            <li>UV Level: {cityDay.uv}</li>
-            <li>Maximum Wind Speed: {cityDay.maxwind_kph} km/h</li>
-            <li>Average Humidity: {cityDay.avghumidity}%</li>
-            <li>Average Visibility: {cityDay.avgvis_km} km</li>
+            <li>
+              <FormattedMessage
+                id="detailedForecast.minTemp"
+                defaultMessage={"Minimum Temperature: "}
+              />
+              {cityDay.mintemp_c}℃
+            </li>
+            <li>
+              <FormattedMessage
+                id="detailedForecast.maxTemp"
+                defaultMessage={"Maximum Temperature: "}
+              />
+              {cityDay.maxtemp_c}℃
+            </li>
+            <li>
+              <FormattedMessage
+                id="detailedForecast.totalRainfall"
+                defaultMessage={"Total Rainfall: "}
+              />
+              {cityDay.totalprecip_mm}mm
+            </li>
+            <li>
+              <FormattedMessage
+                id="detailedForecast.uvLevel"
+                defaultMessage={"UV Level: "}
+              />
+              {cityDay.uv}
+            </li>
+            <li>
+              <FormattedMessage
+                id="detailedForecast.windSpeed"
+                defaultMessage={"Maximum Wind Speed: "}
+              />
+              {cityDay.maxwind_kph} km/h
+            </li>
+            <li>
+              <FormattedMessage
+                id="detailedForecast.humidity"
+                defaultMessage={"Average Humidity: "}
+              />
+              {cityDay.avghumidity}%
+            </li>
+            <li>
+              <FormattedMessage
+                id="detailedForecast.visibility"
+                defaultMessage={"Average Visbility: "}
+              />
+              {cityDay.avgvis_km} km
+            </li>
           </ul>
         </Card>
       </Grid>
@@ -109,24 +152,43 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
           >
             <Grid item xs={6}>
               <Box>
-                <BsSunrise /> Sunrise:
+                <BsSunrise />
+                <FormattedMessage
+                  id="detailedForecast.sunrise"
+                  defaultMessage={" Sunrise:"}
+                />
                 <br />
                 {cityForecast.astro.sunrise}{" "}
               </Box>
             </Grid>
             <Grid item xs={6}>
               <Box>
-                <BsSunset /> Sunset: <br /> {cityForecast.astro.sunset}
+                <BsSunset />
+                <FormattedMessage
+                  id="detailedForecast.sunset"
+                  defaultMessage={" Sunset:"}
+                />
+                <br /> {cityForecast.astro.sunset}
               </Box>
             </Grid>
             <Grid item xs={6}>
               <Box>
-                <WiMoonrise /> Moonrise: <br /> {cityForecast.astro.moonset}
+                <WiMoonrise />
+                <FormattedMessage
+                  id="detailedForecast.moonrise"
+                  defaultMessage={" Moonrise:"}
+                />
+                <br /> {cityForecast.astro.moonset}
               </Box>
             </Grid>
             <Grid item xs={6}>
               <Box>
-                <WiMoonset /> Moonset: <br /> {cityForecast.astro.moonrise}
+                <WiMoonset />
+                <FormattedMessage
+                  id="detailedForecast.moonset"
+                  defaultMessage={" Moonset:"}
+                />
+                <br /> {cityForecast.astro.moonrise}
               </Box>
             </Grid>
           </Grid>

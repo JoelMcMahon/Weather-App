@@ -1,11 +1,12 @@
 import { Typography, Box, Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { getStocks } from "../services";
+import { getForecast } from "../services";
 import CityTabs from "./CityTabs";
 import { useCityContext } from "../context/CityContextProvider";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { FormattedMessage, useIntl } from "react-intl";
 import LanguageSelector from "./LanguageSelector";
+import { useLanguageContext } from "../context/LanguageContextProvider";
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
@@ -14,6 +15,7 @@ const DataTable = () => {
   const [isBlur, setIsBlur] = useState<boolean>(false);
 
   const { city, setCity } = useCityContext();
+  const { locale } = useLanguageContext();
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setformInput(e.target.value);
@@ -31,7 +33,7 @@ const DataTable = () => {
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    getStocks(formInput).then((response) => {
+    getForecast(formInput, locale).then((response) => {
       setCity({
         name: response.location.name,
         forecast: response.forecast.forecastday,
@@ -45,7 +47,7 @@ const DataTable = () => {
 
   useEffect(() => {
     const identifier = setTimeout(() => {
-      getStocks(formInput)
+      getForecast(formInput, locale)
         .then((res) => {
           if (res.location.name) {
             setIsInputValid(true);
