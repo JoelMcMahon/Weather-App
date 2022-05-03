@@ -13,6 +13,7 @@ const DataTable = () => {
   const [isInputValid, setIsInputValid] = useState<boolean>(false);
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [isBlur, setIsBlur] = useState<boolean>(false);
+  const [geolocation, setGeolocation] = useState<string>("");
 
   const { city, setCity } = useCityContext();
   const { locale } = useLanguageContext();
@@ -73,19 +74,28 @@ const DataTable = () => {
   }, [locale]);
 
   useEffect(() => {
-    let preset;
-    if (locale === "fr") {
-      preset = "Paris";
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position);
+      setGeolocation(
+        `${position.coords.latitude.toString()},${position.coords.longitude.toString()}`
+      );
+    });
+    console.log(geolocation);
+    let presetLocation;
+    if (geolocation) {
+      presetLocation = geolocation;
+    } else if (locale === "fr") {
+      presetLocation = "Paris";
     } else {
-      preset = "London";
+      presetLocation = "London";
     }
-    getForecast(preset, locale).then((response) => {
+    getForecast(presetLocation, locale).then((response) => {
       setCity({
         name: response.location.name,
         forecast: response.forecast.forecastday,
       });
     });
-  }, []);
+  }, [geolocation]);
 
   const theme = createTheme();
 
