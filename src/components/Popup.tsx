@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { FormattedMessage } from "react-intl";
 
 const style = {
   position: "absolute" as "absolute",
@@ -47,13 +48,55 @@ const Popup: React.FC<IProps> = ({ value }) => {
             }}
           >
             <ul>
-              <li>Humidity: {value.humidity}%</li>
-              <li>Feels Like: {value.feelslike_c}℃</li>
-              <li>UV: {value.uv}</li>
-              <li>Cloud: {value.cloud}</li>
-              <li>Wind Speed: {value.wind_kph} km/h</li>
-              <li>Chance of Rain: {value.chance_of_rain}%</li>
-              <li>Chance of Snow: {value.chance_of_snow}%</li>
+              <li>
+                <FormattedMessage
+                  id="popup.humidity"
+                  defaultMessage={"Humidity: "}
+                />
+                {value.humidity}%
+              </li>
+              <li>
+                <FormattedMessage
+                  id="popup.feelsLike"
+                  defaultMessage={"Feels Like: "}
+                />
+                {value.feelslike_c}℃
+              </li>
+              <li>
+                <FormattedMessage
+                  id="popup.uvLevel"
+                  defaultMessage={"UV Level: "}
+                />
+                {value.uv}
+              </li>
+              <li>
+                <FormattedMessage
+                  id="popup.cloud"
+                  defaultMessage={"Cloud Cover: "}
+                />
+                {value.cloud}
+              </li>
+              <li>
+                <FormattedMessage
+                  id="popup.windSpeed"
+                  defaultMessage={"Wind Speed: "}
+                />
+                {value.wind_kph} km/h
+              </li>
+              <li>
+                <FormattedMessage
+                  id="popup.chanceOfRain"
+                  defaultMessage={"Chance of Rain: "}
+                />
+                {value.chance_of_rain}%
+              </li>
+              <li>
+                <FormattedMessage
+                  id="popup.chanceOfSnow"
+                  defaultMessage={"Chance of Snow: "}
+                />
+                {value.chance_of_snow}%
+              </li>
             </ul>
           </Typography>
         </Box>
