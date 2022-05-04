@@ -146,7 +146,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
               alignItems: "center",
               justifyContent: "center",
               flexDirection: "row",
-              marginLeft: "2rem",
+              marginLeft: "1.5rem",
               marginBottom: "1rem",
             }}
           >

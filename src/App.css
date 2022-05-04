@@ -55,6 +55,14 @@ body {
   }
 }
 
+@media screen and (min-width: 360px) {
+  .cityInputForm {
+    display: flex;
+    flex-direction: row;
+    height: 3rem;
+  }
+}
+
 #city_input {
   background-color: #041c329c;
   color: white;
