@@ -15,11 +15,14 @@ const LanguageSelector: React.FC = () => {
         />
       </label>
       <select id="menu" value={locale} onChange={handleChangeLanguage}>
-        <option className="options" value="en">
+        <option className="options" value="en-GB">
           En
         </option>
         <option className="options" value="fr">
           Fr
+        </option>
+        <option className="options" value="en-US">
+          US
         </option>
       </select>
     </>

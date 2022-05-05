@@ -75,12 +75,10 @@ const DataTable = () => {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
       setGeolocation(
         `${position.coords.latitude.toString()},${position.coords.longitude.toString()}`
       );
     });
-    console.log(geolocation);
     let presetLocation;
     if (geolocation) {
       presetLocation = geolocation;

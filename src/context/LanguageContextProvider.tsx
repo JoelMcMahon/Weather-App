@@ -13,7 +13,7 @@ export const useLanguageContext = () => useContext(languageContext);
 const browserLocale = navigator.language;
 
 let language: any;
-if (browserLocale === "en" || "en-us") {
+if (browserLocale === "en-GB" || "en-US") {
   language = English;
 } else {
   language = French;

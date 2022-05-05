@@ -13,7 +13,6 @@ export const getForecast = (cityName: string, locale: string): Promise<any> => {
       params: { q: city, days: "3", lang: locale },
     })
       .then((response) => {
-        console.log("response in request");
         resolve(response.data);
       })
       .catch((err) => {

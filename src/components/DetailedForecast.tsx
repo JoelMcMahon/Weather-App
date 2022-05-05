@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Grid, Typography, Box } from "@mui/material";
 import { useCityContext } from "../context/CityContextProvider";
 import { BsSunrise } from "react-icons/bs";
@@ -6,6 +6,8 @@ import { BsSunset } from "react-icons/bs";
 import { WiMoonrise } from "react-icons/wi";
 import { WiMoonset } from "react-icons/wi";
 import { FormattedMessage } from "react-intl";
+import { useLanguageContext } from "../context/LanguageContextProvider";
+import { formatAstro } from "../utils/utilFunction";
 
 interface IProps {
   value: string;
@@ -13,9 +15,38 @@ interface IProps {
 
 const DetailedForecast: React.FC<IProps> = ({ value }) => {
   const { city } = useCityContext();
+  const { locale } = useLanguageContext();
+
+  let timezone: any;
+  if (locale === "en-GB") {
+    timezone = "Europe/London";
+  } else if (locale === "fr") {
+    timezone = "Europe/Paris";
+  } else if (locale === "en-US") {
+    timezone = "America/New_York";
+  }
+
+  let currentDate = new Date().toLocaleString(locale, {
+    timeZone: timezone,
+    hour12: locale === "en-US" ? true : false,
+    timeStyle: "short",
+  });
+  const [time, settime] = useState<string>(currentDate);
 
   let cityForecast = city.forecast[parseInt(value)];
   let cityDay = cityForecast.day;
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      let currentTime = new Date().toLocaleString(locale, {
+        timeZone: timezone,
+        hour12: locale === "en-US" ? true : false,
+        timeStyle: "short",
+      });
+      settime(currentTime);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [locale]);
 
   return (
     <Grid
@@ -158,7 +189,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
                   defaultMessage={" Sunrise:"}
                 />
                 <br />
-                {cityForecast.astro.sunrise}{" "}
+                {formatAstro(cityForecast.astro.sunrise, locale)}{" "}
               </Box>
             </Grid>
             <Grid item xs={6}>
@@ -168,7 +199,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
                   id="detailedForecast.sunset"
                   defaultMessage={" Sunset:"}
                 />
-                <br /> {cityForecast.astro.sunset}
+                <br /> {formatAstro(cityForecast.astro.sunset, locale)}
               </Box>
             </Grid>
             <Grid item xs={6}>
@@ -178,7 +209,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
                   id="detailedForecast.moonrise"
                   defaultMessage={" Moonrise:"}
                 />
-                <br /> {cityForecast.astro.moonset}
+                <br /> {formatAstro(cityForecast.astro.moonset, locale)}
               </Box>
             </Grid>
             <Grid item xs={6}>
@@ -188,10 +219,11 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
                   id="detailedForecast.moonset"
                   defaultMessage={" Moonset:"}
                 />
-                <br /> {cityForecast.astro.moonrise}
+                <br /> {formatAstro(cityForecast.astro.moonrise, locale)}
               </Box>
             </Grid>
           </Grid>
+          <Box>{time}</Box>
         </Card>
       </Grid>
     </Grid>
