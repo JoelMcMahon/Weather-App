@@ -13,7 +13,7 @@ export const useLanguageContext = () => useContext(languageContext);
 const browserLocale = navigator.language;
 
 let language: any;
-if (browserLocale === "en" || "en-us") {
+if (browserLocale === "en-GB" || "en-US") {
   language = English;
 } else {
   language = French;
@@ -25,6 +25,7 @@ const LanguageContextProvider: React.FC = (props) => {
 
   const handleChangeLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLocale = e.target.value;
+    console.log(newLocale);
     setLocale(newLocale);
     if (newLocale === "fr") {
       setMessages(French);

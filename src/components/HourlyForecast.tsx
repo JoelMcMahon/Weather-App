@@ -4,6 +4,8 @@ import { useCityContext } from "../context/CityContextProvider";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Popup from "./Popup";
+import { useLanguageContext } from "../context/LanguageContextProvider";
+import { formatDate } from "../utils/utilFunction";
 
 interface IProps {
   value: string;
@@ -23,9 +25,9 @@ const theme = createTheme({
 
 const HourlyForecast: React.FC<IProps> = ({ value }) => {
   const { city } = useCityContext();
+  const { locale } = useLanguageContext();
 
   let cityForecast = city.forecast[parseInt(value)];
-
   let currentDate = new Date();
   let time = currentDate.getHours();
 
@@ -109,7 +111,9 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
                   }}
                 >
                   <ul>
-                    <li>{cityForecast.hour[slides[i]].time.slice(-5)}</li>
+                    <li>
+                      {formatDate(cityForecast.hour[slides[i]].time, locale)}
+                    </li>
                     <li>{cityForecast.hour[slides[i]].temp_c}℃</li>
                     <li>
                       <img
@@ -143,7 +147,7 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
               }}
             >
               <ul>
-                <li>{cityForecast.hour[slides[0]].time.slice(-5)}</li>
+                <li>{formatDate(cityForecast.hour[slides[0]].time, locale)}</li>
                 <li>{cityForecast.hour[slides[0]].temp_c}℃</li>
                 <li>
                   <img src={cityForecast.hour[slides[0]].condition.icon}></img>

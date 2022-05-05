@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Grid, Typography, Box } from "@mui/material";
 import { useCityContext } from "../context/CityContextProvider";
 import { BsSunrise } from "react-icons/bs";
@@ -6,6 +6,7 @@ import { BsSunset } from "react-icons/bs";
 import { WiMoonrise } from "react-icons/wi";
 import { WiMoonset } from "react-icons/wi";
 import { FormattedMessage } from "react-intl";
+import { useLanguageContext } from "../context/LanguageContextProvider";
 
 interface IProps {
   value: string;
@@ -13,9 +14,43 @@ interface IProps {
 
 const DetailedForecast: React.FC<IProps> = ({ value }) => {
   const { city } = useCityContext();
+  const { locale } = useLanguageContext();
+
+  let timezone: any;
+  if (locale === "en-GB") {
+    timezone = "Europe/London";
+  } else if (locale === "fr") {
+    timezone = "Europe/Paris";
+  } else if (locale === "en-US") {
+    timezone = "America/New_York";
+  }
+
+  let currentDate = new Date().toLocaleString(locale, {
+    timeZone: timezone,
+    hour12: locale === "en-US" ? true : false,
+    timeStyle: "short",
+  });
+  const [time, settime] = useState<string>(currentDate);
+  console.log(time, locale, timezone);
 
   let cityForecast = city.forecast[parseInt(value)];
   let cityDay = cityForecast.day;
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      let currentTime = new Date().toLocaleString(locale, {
+        timeZone: timezone,
+        hour12: locale === "en-US" ? true : false,
+        timeStyle: "short",
+      });
+      settime(currentTime);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [locale]);
+
+  // const moonrise = new Date(cityForecast.astro.moonrise);
+  // console.log(moonrise);
+  // console.log(typeof cityForecast.astro.moonrise);
 
   return (
     <Grid
@@ -192,6 +227,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
               </Box>
             </Grid>
           </Grid>
+          <Box>{time}</Box>
         </Card>
       </Grid>
     </Grid>
