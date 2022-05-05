@@ -18,3 +18,15 @@ export const formatDate = (dateString: string, locale: string) => {
   });
   return formattedDate;
 };
+
+export const formatAstro = (timeString: string, locale: string) => {
+  if (locale === "en-US") {
+    return timeString.slice(1);
+  } else {
+    if (timeString.endsWith("PM")) {
+      return `${parseInt(timeString) + 12}${timeString.substr(2, 3)}`;
+    } else {
+      return `${timeString.substr(0, 5)}`;
+    }
+  }
+};

@@ -25,7 +25,6 @@ const LanguageContextProvider: React.FC = (props) => {
 
   const handleChangeLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLocale = e.target.value;
-    console.log(newLocale);
     setLocale(newLocale);
     if (newLocale === "fr") {
       setMessages(French);
