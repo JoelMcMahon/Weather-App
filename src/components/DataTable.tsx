@@ -9,7 +9,7 @@ import LanguageSelector from "./LanguageSelector";
 import { useLanguageContext } from "../context/LanguageContextProvider";
 import { useToolTipContext } from "../context/ToolTipContextProvider";
 import { steps } from "../tooltipSteps/tooltipSteps";
-import { Steps, Hints } from "intro.js-react";
+import { Steps } from "intro.js-react";
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
