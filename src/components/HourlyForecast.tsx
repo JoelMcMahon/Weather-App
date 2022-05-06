@@ -33,8 +33,15 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
 
   useEffect(() => {
     let slideArray: number[] = [];
+    let slideNumber: number;
+    const mediaQueryCondition = window.matchMedia("(min-width: 900px)");
+    if (mediaQueryCondition.matches) {
+      slideNumber = 4;
+    } else {
+      slideNumber = 1;
+    }
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < slideNumber; i++) {
       slideArray.push(time);
       time++;
     }
@@ -91,8 +98,9 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
               <Grid
                 key={cityForecast.hour[slides[i]].time.slice(-5)}
                 item
-                xs={2}
-                sx={{ display: { xs: "none", md: "block" } }}
+                xs={8}
+                md={2}
+                // sx={{ display: { xs: "none", md: "block" } }}
               >
                 <Paper
                   elevation={10}
@@ -121,7 +129,7 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
                       ></img>
                     </li>
                     <li>{cityForecast.hour[slides[i]].condition.text}</li>
-                    <li>
+                    <li className="detailed_view">
                       <Popup value={cityForecast.hour[slides[i]]} />
                     </li>
                   </ul>
@@ -129,7 +137,7 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
               </Grid>
             );
           })}
-          <Grid item xs={8} sx={{ display: { xs: "block", md: "none" } }}>
+          {/* <Grid item xs={8} sx={{ display: { xs: "block", md: "none" } }}>
             <Paper
               elevation={10}
               sx={{
@@ -153,12 +161,12 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
                   <img src={cityForecast.hour[slides[0]].condition.icon}></img>
                 </li>
                 <li>{cityForecast.hour[slides[0]].condition.text}</li>
-                <li>
+                <li className="detailed_view">
                   <Popup value={cityForecast.hour[slides[0]]} />
                 </li>
               </ul>
             </Paper>
-          </Grid>
+          </Grid> */}
 
           <Grid item xs={2}>
             <Box

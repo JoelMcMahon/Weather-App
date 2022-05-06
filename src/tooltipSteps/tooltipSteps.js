@@ -1,6 +1,6 @@
 export const steps = [
   {
-    element: "#city_input",
+    element: ".cityInputForm",
     intro: "Use the searchbar to search for a City",
     position: "right",
     tooltipClass: "toolTip",
@@ -13,18 +13,20 @@ export const steps = [
     highlightClass: "myHighlightClass",
   },
   {
-    element: "#hourly_forecast",
-    intro: "errrrrr",
-  },
-  {
-    element: "#menu",
-    intro: "You can use this menu to change the language and timezones",
+    element: ".hourly_forecast",
+    intro: "You can use this carousel to navigate through the hourly forecast",
     tooltipClass: "toolTip",
     highlightClass: "myHighlightClass",
   },
   {
-    element: "#carousel",
-    intro: "You can use this carousel to navigate through the hourly forecast",
+    element: ".detailed_view",
+    intro: "Click here to see a detailed hourly forecast",
+    tooltipClass: "toolTip",
+    highlightClass: "myHighlightClass",
+  },
+  {
+    element: "#menu",
+    intro: "You can use this menu to change the language and timezones",
     tooltipClass: "toolTip",
     highlightClass: "myHighlightClass",
   },

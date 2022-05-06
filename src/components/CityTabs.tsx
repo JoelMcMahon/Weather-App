@@ -53,7 +53,7 @@ const CityTabs: React.FC = () => {
               <TabPanel key={weekday} value={i.toString()}>
                 <DetailedForecast value={value} />
                 <br></br>
-                <div id="hourly_forecast">
+                <div className="hourly_forecast">
                   <HourlyForecast value={value}></HourlyForecast>
                 </div>
               </TabPanel>

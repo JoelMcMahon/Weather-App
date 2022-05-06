@@ -116,6 +116,8 @@ const DataTable = () => {
 
   const elementRef: any = useRef();
 
+  const viewWidth = window.innerWidth >= 900 ? true : false;
+
   return (
     <div>
       <Steps
@@ -127,12 +129,15 @@ const DataTable = () => {
         onBeforeChange={(nextStepIndex) => {
           if (nextStepIndex === 2) {
             elementRef.current.updateStepElement(nextStepIndex);
+          } else if (nextStepIndex === 3) {
+            console.log("in");
+            elementRef.current.updateStepElement(nextStepIndex);
           }
         }}
         options={{
           overlayOpacity: 0.5,
-          showProgress: true,
-          showBullets: false,
+          showProgress: false,
+          showBullets: true,
         }}
       />
       <Box
