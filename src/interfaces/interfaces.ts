@@ -14,3 +14,9 @@ export interface ICityContext {
   city: city;
   setCity: React.Dispatch<React.SetStateAction<city>>;
 }
+
+export interface IToolTipContext {
+  enabled: boolean;
+  setEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+  onExit: any;
+}

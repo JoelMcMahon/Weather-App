@@ -7,6 +7,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { FormattedMessage, useIntl } from "react-intl";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguageContext } from "../context/LanguageContextProvider";
+import { useToolTipContext } from "../context/ToolTipContextProvider";
+import { steps } from "../tooltipSteps/tooltipSteps";
+import { Steps, Hints } from "intro.js-react";
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
@@ -17,6 +20,7 @@ const DataTable = () => {
 
   const { city, setCity } = useCityContext();
   const { locale } = useLanguageContext();
+  const { enabled, setEnabled, onExit } = useToolTipContext();
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setformInput(e.target.value);
@@ -112,6 +116,17 @@ const DataTable = () => {
 
   return (
     <div>
+      <Steps
+        enabled={enabled}
+        steps={steps}
+        initialStep={0}
+        onExit={onExit}
+        options={{
+          overlayOpacity: 0.5,
+          showProgress: true,
+          showBullets: false,
+        }}
+      />
       <Box
         sx={{
           display: "flex",
@@ -171,11 +186,7 @@ const DataTable = () => {
           </p>
         )}
       </Box>
-      {city.forecast[0] && (
-        <>
-          <CityTabs></CityTabs>
-        </>
-      )}
+      <CityTabs></CityTabs>
     </div>
   );
 };
