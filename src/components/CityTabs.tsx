@@ -26,38 +26,41 @@ const CityTabs: React.FC = () => {
   });
 
   return (
-    <Box sx={{ width: "100%", typography: "body1" }}>
-      <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList
-            onChange={handleChange}
-            aria-label="lab API tabs example"
-            centered
-          >
-            {weekdays.map((weekday, i) => {
-              return (
-                <Tab
-                  key={weekday}
-                  label={weekday}
-                  value={i.toString()}
-                  sx={{ color: "white" }}
-                />
-              );
-            })}
-          </TabList>
-        </Box>
+    <>
+      <Box sx={{ width: "100%", typography: "body1" }}>
+        <TabContext value={value}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <TabList
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+              centered
+              id="tabs"
+            >
+              {weekdays.map((weekday, i) => {
+                return (
+                  <Tab
+                    key={weekday}
+                    label={weekday}
+                    value={i.toString()}
+                    sx={{ color: "white" }}
+                  />
+                );
+              })}
+            </TabList>
+          </Box>
 
-        {weekdays.map((weekday, i) => {
-          return (
-            <TabPanel key={weekday} value={i.toString()}>
-              <DetailedForecast value={value} />
-              <br></br>
-              <HourlyForecast value={value}></HourlyForecast>
-            </TabPanel>
-          );
-        })}
-      </TabContext>
-    </Box>
+          {weekdays.map((weekday, i) => {
+            return (
+              <TabPanel key={weekday} value={i.toString()}>
+                <DetailedForecast value={value} />
+                <br></br>
+                <HourlyForecast value={value}></HourlyForecast>
+              </TabPanel>
+            );
+          })}
+        </TabContext>
+      </Box>
+    </>
   );
 };
 
