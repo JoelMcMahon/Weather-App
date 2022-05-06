@@ -48,13 +48,14 @@ const CityTabs: React.FC = () => {
               })}
             </TabList>
           </Box>
-
           {weekdays.map((weekday, i) => {
             return (
               <TabPanel key={weekday} value={i.toString()}>
                 <DetailedForecast value={value} />
                 <br></br>
-                <HourlyForecast value={value}></HourlyForecast>
+                <div id="hourly_forecast">
+                  <HourlyForecast value={value}></HourlyForecast>
+                </div>
               </TabPanel>
             );
           })}

@@ -11,6 +11,10 @@ export const steps = [
     intro: "ggggg",
   },
   {
+    element: "#hourly_forecast",
+    intro: "errrrrr",
+  },
+  {
     element: "#menu",
     intro: "You can use this button to contact us",
   },

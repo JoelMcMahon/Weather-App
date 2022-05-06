@@ -1,5 +1,5 @@
 import { Typography, Box, Button } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { getForecast } from "../services";
 import CityTabs from "./CityTabs";
 import { useCityContext } from "../context/CityContextProvider";
@@ -114,6 +114,8 @@ const DataTable = () => {
 
   const intl = useIntl();
 
+  const elementRef: any = useRef();
+
   return (
     <div>
       <Steps
@@ -121,6 +123,12 @@ const DataTable = () => {
         steps={steps}
         initialStep={0}
         onExit={onExit}
+        ref={elementRef}
+        onBeforeChange={(nextStepIndex) => {
+          if (nextStepIndex === 2) {
+            elementRef.current.updateStepElement(nextStepIndex);
+          }
+        }}
         options={{
           overlayOpacity: 0.5,
           showProgress: true,
