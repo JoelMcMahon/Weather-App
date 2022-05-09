@@ -20,3 +20,8 @@ export interface IToolTipContext {
   setEnabled: React.Dispatch<React.SetStateAction<boolean>>;
   onExit: any;
 }
+
+export interface IFavouritesContext {
+  favourites: string[];
+  setFavourites: React.Dispatch<React.SetStateAction<string[]>>;
+}

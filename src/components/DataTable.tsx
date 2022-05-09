@@ -10,6 +10,7 @@ import { useLanguageContext } from "../context/LanguageContextProvider";
 import { useToolTipContext } from "../context/ToolTipContextProvider";
 import { steps } from "../tooltipSteps/tooltipSteps";
 import { Steps } from "intro.js-react";
+import Star from "@mui/icons-material/Star";
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
@@ -17,6 +18,7 @@ const DataTable = () => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [isBlur, setIsBlur] = useState<boolean>(false);
   const [geolocation, setGeolocation] = useState<string>("");
+  const [showFavourites, setshowFavourites] = useState<boolean>(false);
 
   const { city, setCity } = useCityContext();
   const { locale } = useLanguageContext();
@@ -185,8 +187,12 @@ const DataTable = () => {
             />
           </Button>
         </form>
-        <Box>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           <LanguageSelector />
+          <Star
+            sx={{ color: "gold", marginLeft: 3, fontSize: "2rem" }}
+            onClick={() => setshowFavourites(!showFavourites)}
+          />
         </Box>
       </Box>
       <Box className="error_message">
@@ -199,7 +205,7 @@ const DataTable = () => {
           </p>
         )}
       </Box>
-      <CityTabs></CityTabs>
+      <CityTabs showFavourites={showFavourites}></CityTabs>
     </div>
   );
 };
