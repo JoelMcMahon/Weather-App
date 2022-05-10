@@ -8,7 +8,6 @@ import { WiMoonset } from "react-icons/wi";
 import { FormattedMessage } from "react-intl";
 import { useLanguageContext } from "../context/LanguageContextProvider";
 import { formatAstro } from "../utils/utilFunction";
-import { useFavouritesContext } from "../context/FavouritesContextProvider";
 import FavouritesStar from "./FavouritesStar";
 
 interface IProps {
@@ -18,7 +17,6 @@ interface IProps {
 const DetailedForecast: React.FC<IProps> = ({ value }) => {
   const { city } = useCityContext();
   const { locale } = useLanguageContext();
-  const { favourites, setFavourites } = useFavouritesContext();
 
   let timezone: any;
   if (locale === "en-GB") {
@@ -75,6 +73,7 @@ const DetailedForecast: React.FC<IProps> = ({ value }) => {
             {city.name}
             <FavouritesStar />
           </Typography>
+
           <Typography variant="h4" align="center" fontWeight={100}>
             {cityForecast.day.avgtemp_c} ℃
           </Typography>

@@ -12,6 +12,7 @@ import { firstSteps, secondSteps } from "../tooltipSteps/tooltipSteps";
 import { Steps } from "intro.js-react";
 import Star from "@mui/icons-material/Star";
 import Tutorial from "./Tutorial";
+import FavouritesList from "./FavouritesList";
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
@@ -201,11 +202,15 @@ const DataTable = () => {
           }}
         >
           <LanguageSelector />
-          <Tutorial />
-          <Star
-            sx={{ color: "gold", marginLeft: 3, fontSize: "2rem" }}
-            onClick={() => setshowFavourites(!showFavourites)}
-          />
+          <Box
+            sx={{ flexDirection: "row", display: "flex", alignItems: "center" }}
+          >
+            <Tutorial />
+            <Star
+              sx={{ color: "gold", marginLeft: 3, fontSize: "2rem" }}
+              onClick={() => setshowFavourites(!showFavourites)}
+            />
+          </Box>
         </Box>
       </Box>
 
@@ -220,6 +225,7 @@ const DataTable = () => {
         )}
       </Box>
       <CityTabs showFavourites={showFavourites}></CityTabs>
+      {showFavourites && <FavouritesList />}
     </div>
   );
 };

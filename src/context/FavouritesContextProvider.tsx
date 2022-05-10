@@ -1,17 +1,15 @@
 import React, { useContext, createContext, useState } from "react";
-import { IFavouritesContext } from "../interfaces/interfaces";
+import { IFavouritesContext, ICity } from "../interfaces/interfaces";
 
 export const FavouritesContext = createContext<IFavouritesContext>({
-  favourites: [""],
+  favourites: [],
   setFavourites: () => {},
 });
 
 export const useFavouritesContext = () => useContext(FavouritesContext);
 
 const FavouritesContextProvider: React.FC = ({ children }) => {
-  const [favourites, setFavourites] = useState<
-    IFavouritesContext["favourites"]
-  >([""]);
+  const [favourites, setFavourites] = useState<ICity["cities"]>([]);
 
   const value = {
     favourites,

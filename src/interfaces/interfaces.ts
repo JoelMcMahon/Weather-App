@@ -37,6 +37,6 @@ export interface IStepsContext {
 }
 
 export interface IFavouritesContext {
-  favourites: string[];
-  setFavourites: React.Dispatch<React.SetStateAction<string[]>>;
+  favourites: ICity["cities"];
+  setFavourites: React.Dispatch<React.SetStateAction<ICity["cities"]>>;
 }
