@@ -8,9 +8,13 @@ import { FormattedMessage, useIntl } from "react-intl";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguageContext } from "../context/LanguageContextProvider";
 import { useToolTipContext } from "../context/ToolTipContextProvider";
-import { steps } from "../tooltipSteps/tooltipSteps";
+import { firstSteps, secondSteps } from "../tooltipSteps/tooltipSteps";
 import { Steps } from "intro.js-react";
+<<<<<<< HEAD
 import Star from "@mui/icons-material/Star";
+=======
+import Tutorial from "./Tutorial";
+>>>>>>> a30c5ee2eeeacbc06d10ce63896f977057e36db2
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
@@ -22,7 +26,8 @@ const DataTable = () => {
 
   const { city, setCity } = useCityContext();
   const { locale } = useLanguageContext();
-  const { enabled, setEnabled, onExit } = useToolTipContext();
+  const { enabled, setEnabled, onExit, activeSteps, setActiveSteps } =
+    useToolTipContext();
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setformInput(e.target.value);
@@ -124,7 +129,7 @@ const DataTable = () => {
     <div>
       <Steps
         enabled={enabled}
-        steps={steps}
+        steps={activeSteps}
         initialStep={0}
         onExit={onExit}
         ref={elementRef}
@@ -140,6 +145,7 @@ const DataTable = () => {
           overlayOpacity: 0.5,
           showProgress: false,
           showBullets: true,
+          disableInteraction: false,
         }}
       />
       <Box
@@ -187,12 +193,26 @@ const DataTable = () => {
             />
           </Button>
         </form>
+<<<<<<< HEAD
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <LanguageSelector />
           <Star
             sx={{ color: "gold", marginLeft: 3, fontSize: "2rem" }}
             onClick={() => setshowFavourites(!showFavourites)}
           />
+=======
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", lg: "row" },
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: { xs: "1rem", lg: "0" },
+          }}
+        >
+          <LanguageSelector />
+          <Tutorial />
+>>>>>>> a30c5ee2eeeacbc06d10ce63896f977057e36db2
         </Box>
       </Box>
       <Box className="error_message">
@@ -205,7 +225,12 @@ const DataTable = () => {
           </p>
         )}
       </Box>
+<<<<<<< HEAD
       <CityTabs showFavourites={showFavourites}></CityTabs>
+=======
+
+      <CityTabs></CityTabs>
+>>>>>>> a30c5ee2eeeacbc06d10ce63896f977057e36db2
     </div>
   );
 };
