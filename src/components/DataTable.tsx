@@ -138,6 +138,7 @@ const DataTable = () => {
           overlayOpacity: 0.5,
           showProgress: false,
           showBullets: true,
+          disableInteraction: false,
         }}
       />
       <Box
