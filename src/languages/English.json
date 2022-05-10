@@ -22,5 +22,6 @@
   "popup.chanceOfRain": "Chance of Rain: ",
   "popup.chanceOfSnow": "Chance of Snow: ",
   "popup.detailedView": "Detailed View",
-  "dataTable.errorMessage": "Please Enter a Valid Location"
+  "dataTable.errorMessage": "Please Enter a Valid Location",
+  "tutorial": "Tutorial"
 }

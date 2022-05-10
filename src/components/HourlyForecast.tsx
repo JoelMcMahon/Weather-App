@@ -1,4 +1,4 @@
-import { Grid, Paper, Box, Typography } from "@mui/material";
+import { Grid, Paper, Box, Typography, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useCityContext } from "../context/CityContextProvider";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
@@ -6,6 +6,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Popup from "./Popup";
 import { useLanguageContext } from "../context/LanguageContextProvider";
 import { formatDate } from "../utils/utilFunction";
+import { useToolTipContext } from "../context/ToolTipContextProvider";
+import { firstSteps, secondSteps } from "../tooltipSteps/tooltipSteps";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 interface IProps {
   value: string;
@@ -30,6 +33,8 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
   let cityForecast = city.forecast[parseInt(value)];
   let currentDate = new Date();
   let time = currentDate.getHours();
+  const { enabled, setEnabled, onExit, activeSteps, setActiveSteps } =
+    useToolTipContext();
 
   useEffect(() => {
     let slideArray: number[] = [];
@@ -67,8 +72,17 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
     setSlides(nextSlide(slides, -1));
   };
 
+  const handleActiveSecondSteps = () => {
+    setActiveSteps(secondSteps);
+    setEnabled(true);
+  };
+
   return (
     <ThemeProvider theme={theme}>
+      <HelpOutlineIcon
+        onClick={handleActiveSecondSteps}
+        sx={{ color: "white", fontSize: "2rem" }}
+      ></HelpOutlineIcon>
       <Box
         sx={{
           display: "flex",
@@ -88,7 +102,6 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
                 height: "100%",
               }}
             >
-              {" "}
               <IoIosArrowDropleft onClick={handleBackward}></IoIosArrowDropleft>
             </Box>
           </Grid>

@@ -22,5 +22,6 @@
   "popup.chanceOfRain": "Risque de Pluie: ",
   "popup.chanceOfSnow": "Risque de Neige: ",
   "popup.detailedView": "Vue Detailee",
-  "dataTable.errorMessage": "Veuillez Entrer un Emplacement Valide"
+  "dataTable.errorMessage": "Veuillez Entrer un Emplacement Valide",
+  "tutorial": "Didacticiel"
 }
