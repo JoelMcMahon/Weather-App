@@ -130,7 +130,7 @@ ul {
   background: rgba(255, 255, 255, 0.114);
   margin: 0rem 1rem;
 }
-
+/* 
 .toolTip {
   border-radius: 200px;
   background-color: black;
@@ -138,4 +138,53 @@ ul {
 
 .myHighlightClass {
   border: 1px solid white;
+} */
+
+#tutorialBtn {
+  background: rgba(255, 255, 255, 0.114);
+  margin: 1rem 0rem;
+}
+
+.introjs-tooltip {
+  color: #fff;
+}
+
+.introjs-tooltip-header {
+  /* background-color: #064663; */
+  background-color: #043349;
+}
+
+.introjs-tooltiptext {
+  /* background-color: rgba(0, 0, 0); */
+  background-color: #064663;
+  color: white;
+  opacity: 0.8;
+}
+
+.introjs-bullets {
+  /* background-color: rgba(0, 0, 0); */
+  background-color: #064663;
+
+  opacity: 0.8;
+}
+
+.introjs-tooltipbuttons {
+  /* background-color: #064663; */
+  background-color: #043349;
+}
+
+.introjs-button.introjs-nextbutton {
+  border-radius: 1rem;
+  /* background-color: black; */
+  color: #1976d2;
+  text-shadow: none;
+  border: 2px solid #1976d2;
+}
+
+.introjs-button.introjs-prevbutton {
+  border-radius: 1rem;
+  /* background-color: black; */
+  color: #1976d2;
+  text-shadow: none;
+  border: 2px solid #1976d2;
 }
