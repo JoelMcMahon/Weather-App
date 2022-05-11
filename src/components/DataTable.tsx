@@ -209,6 +209,7 @@ const DataTable = () => {
             <Star
               sx={{ color: "gold", marginLeft: 3, fontSize: "2rem" }}
               onClick={() => setshowFavourites(!showFavourites)}
+              id="favouritesStar"
             />
           </Box>
         </Box>

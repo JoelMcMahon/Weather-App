@@ -14,7 +14,11 @@ const FavouritesStar: React.FC = () => {
 
   const handleAddToFavourites = () => {
     if (cityIsFavourited) {
-      setFavourites(favourites.filter((favourite) => favourite !== city));
+      console.log("in");
+      let newFavourites = favourites.filter(
+        (favourite) => favourite.name !== city.name
+      );
+      setFavourites(newFavourites);
     } else {
       setFavourites((currentValue) => [...currentValue, city]);
     }
@@ -32,8 +36,11 @@ const FavouritesStar: React.FC = () => {
     localStorage.setItem("favourites", JSON.stringify(favourites));
   }, [favourites]);
 
+  console.log(cityIsFavourited);
+  console.log(favourites);
+
   return (
-    <>
+    <div id="addToFavourites">
       {cityIsFavourited ? (
         <Star
           onClick={handleAddToFavourites}
@@ -45,7 +52,7 @@ const FavouritesStar: React.FC = () => {
           sx={{ fontSize: "2rem", marginLeft: "1rem" }}
         />
       )}
-    </>
+    </div>
   );
 };
 

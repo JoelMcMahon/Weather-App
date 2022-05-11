@@ -207,3 +207,7 @@ ul {
 .favouriteCityPanel__conditionIcon {
   font-size: 0.5rem;
 }
+
+#addToFavourites {
+  display: inline-flex;
+}

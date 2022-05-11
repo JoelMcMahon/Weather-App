@@ -17,6 +17,7 @@ const FavouritesList: React.FC = () => {
               src={favourite.forecast[0].day.condition.icon}
               className="favouriteCityPanel__conditionIcon"
             ></img>
+            <p>{favourite.forecast[0].day.condition.text}</p>
           </div>
         );
       })}
