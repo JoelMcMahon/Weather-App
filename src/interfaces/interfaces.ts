@@ -35,3 +35,8 @@ export interface IStepsContext {
   activeSteps: step[];
   setActiveSteps: React.Dispatch<React.SetStateAction<step[]>>;
 }
+
+export interface IFavouritesContext {
+  favourites: ICity["cities"];
+  setFavourites: React.Dispatch<React.SetStateAction<ICity["cities"]>>;
+}

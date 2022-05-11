@@ -18,6 +18,18 @@ export const firstSteps = [
     tooltipClass: "toolTip",
     highlightClass: "myHighlightClass",
   },
+  {
+    element: "#addToFavourites",
+    intro: "Click here to add a city to your favourites",
+    tooltipClass: "toolTip",
+    highlightClass: "myHighlighClass",
+  },
+  {
+    element: "#favouritesStar",
+    intro: "Click here to view your favourited cities",
+    tooltipClass: "toolTip",
+    highlightClass: "myHighLightClass",
+  },
 ];
 export const secondSteps = [
   {

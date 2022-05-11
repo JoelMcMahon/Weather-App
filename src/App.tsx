@@ -5,20 +5,23 @@ import { Box } from "@mui/material";
 import CityContextProvider from "./context/CityContextProvider";
 import LanguageContextProvider from "./context/LanguageContextProvider";
 import ToolTipContextProvider from "./context/ToolTipContextProvider";
+import FavouritesContextProvider from "./context/FavouritesContextProvider";
 
 const App: React.FC = () => {
   return (
-    <ToolTipContextProvider>
-      <LanguageContextProvider>
-        <CityContextProvider>
-          <Box className="App">
-            <Box className="main_container">
-              <DataTable></DataTable>
+    <FavouritesContextProvider>
+      <ToolTipContextProvider>
+        <LanguageContextProvider>
+          <CityContextProvider>
+            <Box className="App">
+              <Box className="main_container">
+                <DataTable></DataTable>
+              </Box>
             </Box>
-          </Box>
-        </CityContextProvider>
-      </LanguageContextProvider>
-    </ToolTipContextProvider>
+          </CityContextProvider>
+        </LanguageContextProvider>
+      </ToolTipContextProvider>
+    </FavouritesContextProvider>
   );
 };
 

@@ -10,7 +10,9 @@ import { useLanguageContext } from "../context/LanguageContextProvider";
 import { useToolTipContext } from "../context/ToolTipContextProvider";
 import { firstSteps, secondSteps } from "../tooltipSteps/tooltipSteps";
 import { Steps } from "intro.js-react";
+import Star from "@mui/icons-material/Star";
 import Tutorial from "./Tutorial";
+import FavouritesList from "./FavouritesList";
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
@@ -18,6 +20,7 @@ const DataTable = () => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [isBlur, setIsBlur] = useState<boolean>(false);
   const [geolocation, setGeolocation] = useState<string>("");
+  const [showFavourites, setshowFavourites] = useState<boolean>(false);
 
   const { city, setCity } = useCityContext();
   const { locale } = useLanguageContext();
@@ -188,6 +191,7 @@ const DataTable = () => {
             />
           </Button>
         </form>
+
         <Box
           sx={{
             display: "flex",
@@ -198,9 +202,19 @@ const DataTable = () => {
           }}
         >
           <LanguageSelector />
-          <Tutorial />
+          <Box
+            sx={{ flexDirection: "row", display: "flex", alignItems: "center" }}
+          >
+            <Tutorial />
+            <Star
+              sx={{ color: "gold", marginLeft: 3, fontSize: "2rem" }}
+              onClick={() => setshowFavourites(!showFavourites)}
+              id="favouritesStar"
+            />
+          </Box>
         </Box>
       </Box>
+
       <Box className="error_message">
         {!isInputValid && isBlur && (
           <p>
@@ -211,8 +225,8 @@ const DataTable = () => {
           </p>
         )}
       </Box>
-
-      <CityTabs></CityTabs>
+      <CityTabs showFavourites={showFavourites}></CityTabs>
+      {showFavourites && <FavouritesList />}
     </div>
   );
 };

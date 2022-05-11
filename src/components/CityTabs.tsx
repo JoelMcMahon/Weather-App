@@ -9,7 +9,10 @@ import DetailedForecast from "./DetailedForecast";
 import HourlyForecast from "./HourlyForecast";
 import { useLanguageContext } from "../context/LanguageContextProvider";
 
-const CityTabs: React.FC = () => {
+interface Iprops {
+  showFavourites: boolean;
+}
+const CityTabs: React.FC<Iprops> = ({ showFavourites }) => {
   const { city } = useCityContext();
   const [value, setValue] = useState<string>("0");
   const { locale } = useLanguageContext();
@@ -28,38 +31,40 @@ const CityTabs: React.FC = () => {
   return (
     <>
       <Box sx={{ width: "100%", typography: "body1" }}>
-        <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <TabList
-              onChange={handleChange}
-              aria-label="lab API tabs example"
-              centered
-              id="tabs"
-            >
-              {weekdays.map((weekday, i) => {
-                return (
-                  <Tab
-                    key={weekday}
-                    label={weekday}
-                    value={i.toString()}
-                    sx={{ color: "white" }}
-                  />
-                );
-              })}
-            </TabList>
-          </Box>
-          {weekdays.map((weekday, i) => {
-            return (
-              <TabPanel key={weekday} value={i.toString()}>
-                <DetailedForecast value={value} />
-                <br></br>
-                <div className="hourly_forecast">
-                  <HourlyForecast value={value}></HourlyForecast>
-                </div>
-              </TabPanel>
-            );
-          })}
-        </TabContext>
+        {!showFavourites && (
+          <TabContext value={value}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <TabList
+                onChange={handleChange}
+                aria-label="lab API tabs example"
+                centered
+                id="tabs"
+              >
+                {weekdays.map((weekday, i) => {
+                  return (
+                    <Tab
+                      key={weekday}
+                      label={weekday}
+                      value={i.toString()}
+                      sx={{ color: "white" }}
+                    />
+                  );
+                })}
+              </TabList>
+            </Box>
+            {weekdays.map((weekday, i) => {
+              return (
+                <TabPanel key={weekday} value={i.toString()}>
+                  <DetailedForecast value={value} />
+                  <br></br>
+                  <div className="hourly_forecast">
+                    <HourlyForecast value={value}></HourlyForecast>
+                  </div>
+                </TabPanel>
+              );
+            })}
+          </TabContext>
+        )}
       </Box>
     </>
   );
