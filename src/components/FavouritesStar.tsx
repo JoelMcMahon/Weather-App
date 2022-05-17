@@ -36,9 +36,6 @@ const FavouritesStar: React.FC = () => {
     localStorage.setItem("favourites", JSON.stringify(favourites));
   }, [favourites]);
 
-  console.log(cityIsFavourited);
-  console.log(favourites);
-
   return (
     <div id="addToFavourites">
       {cityIsFavourited ? (

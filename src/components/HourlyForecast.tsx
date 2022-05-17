@@ -7,8 +7,8 @@ import Popup from "./Popup";
 import { useLanguageContext } from "../context/LanguageContextProvider";
 import { formatDate } from "../utils/utilFunction";
 import { useToolTipContext } from "../context/ToolTipContextProvider";
-import { firstSteps, secondSteps } from "../tooltipSteps/tooltipSteps";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import { getSteps } from "../services";
 
 interface IProps {
   value: string;
@@ -73,7 +73,9 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
   };
 
   const handleActiveSecondSteps = () => {
-    setActiveSteps(secondSteps);
+    getSteps("tutorial/en/secondSteps.json").then((response) => {
+      setActiveSteps(Object.values(response));
+    });
     setEnabled(true);
   };
 

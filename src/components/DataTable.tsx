@@ -1,6 +1,6 @@
 import { Typography, Box, Button } from "@mui/material";
 import React, { useState, useEffect, useRef } from "react";
-import { getForecast } from "../services";
+import { getForecast, getSteps } from "../services";
 import CityTabs from "./CityTabs";
 import { useCityContext } from "../context/CityContextProvider";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -8,11 +8,12 @@ import { FormattedMessage, useIntl } from "react-intl";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguageContext } from "../context/LanguageContextProvider";
 import { useToolTipContext } from "../context/ToolTipContextProvider";
-import { firstSteps, secondSteps } from "../tooltipSteps/tooltipSteps";
 import { Steps } from "intro.js-react";
 import Star from "@mui/icons-material/Star";
 import Tutorial from "./Tutorial";
 import FavouritesList from "./FavouritesList";
+import { step } from "../interfaces/interfaces";
+import axios from "axios";
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
@@ -104,6 +105,22 @@ const DataTable = () => {
     });
   }, [geolocation]);
 
+  // useEffect(() => {
+  //   getSteps().then((res: any) => {
+  //     const data: step[] = Object.values(res);
+
+  //     setActiveSteps(data);
+  //   });
+  //   console.log("steps");
+  // }, []);
+
+  // const handleOnClick = () => {
+  //   // getSteps().then((res: any) => {
+  //   //   console.log(Object.values(res));
+  //   //   setActiveSteps(Object.values(res));
+  //   // });
+  // };
+
   const theme = createTheme();
 
   theme.typography.h4 = {
@@ -146,6 +163,7 @@ const DataTable = () => {
           disableInteraction: false,
         }}
       />
+
       <Box
         sx={{
           display: "flex",
