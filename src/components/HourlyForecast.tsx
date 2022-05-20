@@ -1,4 +1,4 @@
-import { Grid, Paper, Box, Typography, Button } from "@mui/material";
+import { Grid, Paper, Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useCityContext } from "../context/CityContextProvider";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
@@ -33,8 +33,7 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
   let cityForecast = city.forecast[parseInt(value)];
   let currentDate = new Date();
   let time = currentDate.getHours();
-  const { enabled, setEnabled, onExit, activeSteps, setActiveSteps } =
-    useToolTipContext();
+  const { setEnabled, setActiveSteps } = useToolTipContext();
 
   useEffect(() => {
     let slideArray: number[] = [];
@@ -73,10 +72,13 @@ const HourlyForecast: React.FC<IProps> = ({ value }) => {
   };
 
   const handleActiveSecondSteps = () => {
-    getSteps("tutorial/en/secondSteps.json").then((response) => {
-      setActiveSteps(Object.values(response));
-    });
-    setEnabled(true);
+    getSteps("tutorial/en/secondSteps.json")
+      .then((response) => {
+        setActiveSteps(Object.values(response));
+      })
+      .then(() => {
+        setEnabled(true);
+      });
   };
 
   return (

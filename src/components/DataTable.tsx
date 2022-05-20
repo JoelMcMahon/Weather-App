@@ -12,8 +12,6 @@ import { Steps } from "intro.js-react";
 import Star from "@mui/icons-material/Star";
 import Tutorial from "./Tutorial";
 import FavouritesList from "./FavouritesList";
-import { step } from "../interfaces/interfaces";
-import axios from "axios";
 
 const DataTable = () => {
   const [formInput, setformInput] = useState<string>("");
@@ -25,8 +23,7 @@ const DataTable = () => {
 
   const { city, setCity } = useCityContext();
   const { locale } = useLanguageContext();
-  const { enabled, setEnabled, onExit, activeSteps, setActiveSteps } =
-    useToolTipContext();
+  const { enabled, onExit, activeSteps } = useToolTipContext();
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setformInput(e.target.value);
@@ -105,22 +102,6 @@ const DataTable = () => {
     });
   }, [geolocation]);
 
-  // useEffect(() => {
-  //   getSteps().then((res: any) => {
-  //     const data: step[] = Object.values(res);
-
-  //     setActiveSteps(data);
-  //   });
-  //   console.log("steps");
-  // }, []);
-
-  // const handleOnClick = () => {
-  //   // getSteps().then((res: any) => {
-  //   //   console.log(Object.values(res));
-  //   //   setActiveSteps(Object.values(res));
-  //   // });
-  // };
-
   const theme = createTheme();
 
   theme.typography.h4 = {
@@ -137,8 +118,6 @@ const DataTable = () => {
   const intl = useIntl();
 
   const elementRef: any = useRef();
-
-  const viewWidth = window.innerWidth >= 900 ? true : false;
 
   return (
     <div>

@@ -2,14 +2,20 @@ import { Button } from "@mui/material";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import { useToolTipContext } from "../context/ToolTipContextProvider";
+import { getSteps } from "../services";
 import { firstSteps } from "../tooltipSteps/tooltipSteps";
 
 const Tutorial = () => {
   const { enabled, setEnabled, setActiveSteps } = useToolTipContext();
 
   const toggleSteps = () => {
-    setActiveSteps(firstSteps);
-    setEnabled(!enabled);
+    getSteps("tutorial/en/firstSteps.json")
+      .then((response) => {
+        setActiveSteps(Object.values(response));
+      })
+      .then(() => {
+        setEnabled(!enabled);
+      });
   };
 
   return (

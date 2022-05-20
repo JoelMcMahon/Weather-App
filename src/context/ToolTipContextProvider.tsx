@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { IToolTipContext, step } from "../interfaces/interfaces";
-import { getForecast, getSteps } from "../services";
+import { IToolTipContext } from "../interfaces/interfaces";
+import { getSteps } from "../services";
 
 const toolTipContext = createContext<IToolTipContext>({
   enabled: true,
@@ -13,7 +13,7 @@ const toolTipContext = createContext<IToolTipContext>({
 export const useToolTipContext = () => useContext(toolTipContext);
 
 const ToolTipContextProvider: React.FC = ({ children }) => {
-  const [enabled, setEnabled] = useState(true);
+  const [enabled, setEnabled] = useState(false);
   const [activeSteps, setActiveSteps] = useState<any>([
     {
       element: "#tutorialBtn",
@@ -26,9 +26,13 @@ const ToolTipContextProvider: React.FC = ({ children }) => {
   ]);
 
   useEffect(() => {
-    getSteps("tutorial/en/firstSteps.json").then((response) => {
-      setActiveSteps(Object.values(response));
-    });
+    getSteps("tutorial/en/firstSteps.json")
+      .then((response) => {
+        setActiveSteps(Object.values(response));
+      })
+      .then(() => {
+        setEnabled(true);
+      });
   }, []);
 
   console.log(activeSteps);
